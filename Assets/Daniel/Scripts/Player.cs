@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,10 +13,43 @@ public class Player : MonoBehaviour
     public float checkRadius = 0.1f;
     public LayerMask groundMask;
     private bool isGrounded;
+    public int HP;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject edge;
     [SerializeField] private GameObject arm;
     private float fireSpeed = 10f;
+    [SerializeField] private float AtkSpeed;//how quickly the player can attack
+    private float AtkTimer;
+    [SerializeField] private float Invul;
+    [SerializeReference] private GameObject MainCam;
+    private float InvulTimer;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EBullet") && (InvulTimer == 0)) //check if invulnerable
+        {
+            InvulTimer = Invul;//Set timer
+            HP -= 1;//reduce hp, need to change this out to find away to get the damage value from the bullet itself
+            Destroy(collision.gameObject);// destroy bullet to stop it from gunking anything up
+            if (HP <= 0)//Check here if dead, so we dont wait until no longer invul
+            {
+                MainCam.transform.parent = null;
+                gameObject.SetActive(false);
+                ActivateDeathUI.instance.ActivateUI();
+            }
+        }
+        else if (collision.gameObject.CompareTag("EBullet"))
+        {
+            Destroy(collision.gameObject);//destroys bullet regardless
+        }
+    }
+
+    void Awake()
+    {
+        MainCam.transform.parent = transform;
+    }
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,7 +62,25 @@ public class Player : MonoBehaviour
         isGrounded = CheckGrounded();
         Movement();
     }
-
+    void Update()
+    {
+        if(InvulTimer - 1*Time.deltaTime >= 0)
+        {
+            InvulTimer -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            InvulTimer = 0;
+        }
+        if(AtkTimer - 1*Time.deltaTime >= 0)
+        {
+            AtkTimer -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            AtkTimer = 0;
+        }
+    }
     bool CheckGrounded()
     {
         Vector2 position = transform.position;
@@ -40,7 +92,7 @@ public class Player : MonoBehaviour
         }
         return false;
     }
-
+  
     void Movement()
     {
         rb.linearVelocityX = inputVector.x * moveSpeed;
@@ -66,8 +118,9 @@ public class Player : MonoBehaviour
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && AtkTimer==0)
         {
+            AtkTimer = AtkSpeed;
             Shoot();
         }
         StartCoroutine(Wait());
@@ -90,6 +143,6 @@ public class Player : MonoBehaviour
         angle = Mathf.Repeat(angle, 360);
         angle = angle - transform.rotation.z;
         bullet = Instantiate(bulletPrefab, edge.transform.position, Quaternion.Euler(0, 0, angle));
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * fireSpeed, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * fireSpeed, ForceMode2D.Impulse);      
     }
 }
