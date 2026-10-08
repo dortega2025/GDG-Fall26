@@ -181,12 +181,12 @@ MonoBehaviour:
   TravelDistance: 0
   AtkObA: {fileID: 8032864220154749542, guid: 6154e3090c6756f4b9815dd615a4ff0f, type: 3}
   AtkGenA: {fileID: 1099900568891347693}
-  ProbabilityA: 100
+  ProbabilityA: 20
   AtkCoolDwnA: 30
   NodeLU: {fileID: 0}
   NodeRD: {fileID: 0}
   AtkObB: {fileID: 0}
-  ProbabilityB: 60
+  ProbabilityB: 100
   AtkCoolDwnB: 10
   AtkObC: {fileID: 0}
   ProbabilityC: 100
