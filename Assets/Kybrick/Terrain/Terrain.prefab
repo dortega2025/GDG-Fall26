@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4751195042783323925}
   - component: {fileID: 5660249442065378031}
   - component: {fileID: 3863726656389308316}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5463873449028070669}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}

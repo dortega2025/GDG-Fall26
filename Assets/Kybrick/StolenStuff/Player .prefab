@@ -246,17 +246,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13496bdad1a234da6bf375fb708e1797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  jumpForce: 20
+  JumpNumMax: 2
   rb: {fileID: 5090774293541179144}
   checkRadius: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  HP: 0
+  HP: 3
   bulletPrefab: {fileID: 1833276178359229209, guid: 4a8f1583239f54a7db97c06c2892bb57, type: 3}
   edge: {fileID: 2980554953157052839}
   arm: {fileID: 8849698616968910803}
-  AtkSpeed: 3
-  Invul: 0
+  AtkSpeed: 2
+  Invul: 3
   MainCam: {fileID: 0}
 --- !u!50 &5090774293541179144
 Rigidbody2D:

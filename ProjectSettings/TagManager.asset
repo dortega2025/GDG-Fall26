@@ -4,24 +4,18 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Conveyer
-  - Enemy
   - PBullet
+  - Conveyer
   - EBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-<<<<<<< HEAD
-  - Player
-  - Enemy
-=======
   - Ground
   - 
->>>>>>> d1b636e6387268e5126af957fed1dd0cf247f529
   - 
   - 
   - 

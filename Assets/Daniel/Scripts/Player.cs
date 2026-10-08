@@ -7,7 +7,9 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private float moveSpeed = 5f;
-    private float jumpForce = 10f;
+    [SerializeField]private float jumpForce;
+    [SerializeField] private int JumpNumMax;
+    public int JumpNum;
     public Rigidbody2D rb;
     private Vector2 inputVector = Vector2.zero;
     public float checkRadius = 0.1f;
@@ -60,6 +62,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = CheckGrounded();
+        if (isGrounded)
+        {
+            JumpNum = JumpNumMax;
+        }
         Movement();
     }
     void Update()
@@ -105,14 +111,16 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded)
+        if (context.performed && isGrounded || JumpNum >= 1)
         {
+            JumpNum -= 1;
             Jump();
         }
     }
 
     void Jump()
     {
+        JumpNum -= 1;
         rb.linearVelocityY = jumpForce;
     }
 
@@ -144,5 +152,14 @@ public class Player : MonoBehaviour
         angle = angle - transform.rotation.z;
         bullet = Instantiate(bulletPrefab, edge.transform.position, Quaternion.Euler(0, 0, angle));
         bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * fireSpeed, ForceMode2D.Impulse);      
+    }
+
+    public void TakeDamage(int Dmg)
+    {
+        if(InvulTimer == 0)
+        {
+            HP -= Dmg;
+            InvulTimer = Invul;
+        } 
     }
 }
