@@ -4,6 +4,8 @@ using UnityEngine.UIElements;
 public class EnemyTurret : MonoBehaviour
 {
     [SerializeReference] private GameObject Bullet;
+    [SerializeReference] private GameObject Square;
+    [SerializeReference] private GameObject Triangle;
     [SerializeReference] private GameObject Generator;
     [SerializeReference] private GameObject Player;
     public float AtkSpd;
@@ -23,14 +25,13 @@ public class EnemyTurret : MonoBehaviour
             {
                 AtkTimer = AtkSpd;
                 GameObject Atk = Bullet;
+                Vector2 direction = Square.transform.position - Triangle.transform.position;
                 Instantiate(Atk, transform.position, transform.rotation);
-                
-                Atk.GetComponent<Rigidbody2D>().AddForce(transform.forward * BulletSpd, ForceMode2D.Impulse); 
+                Atk.GetComponent<Rigidbody2D>().AddForce( direction.normalized* BulletSpd, ForceMode2D.Impulse); 
             }
         }
             CheckDistance();        
     }
-
     void CheckDistance()
     {
         if (Vector2.Distance(transform.position,Player.transform.position)<=AggroRange)

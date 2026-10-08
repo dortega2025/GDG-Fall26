@@ -29,4 +29,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Move(Vector2 direction,float Speed)
+    {
+        rb.AddForce(direction.normalized * Speed, ForceMode2D.Impulse);
+    }
 }

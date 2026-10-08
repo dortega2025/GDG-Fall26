@@ -19,7 +19,6 @@ public class KelpBalls : MonoBehaviour
         StartPos = transform.position;
         TargetPos = player.transform.position;
         Vector2 direction = StartPos - TargetPos;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         rb.AddForce(-direction.normalized * (1f*Speed), ForceMode2D.Impulse);
     }
     private void Update()
