@@ -33,7 +33,7 @@ public class SeaWeedBlast : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.TakeDamage(Dmg);
+            //player.TakeDamage(Dmg);
         }
     }
     void Update()

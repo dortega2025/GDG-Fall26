@@ -1176,6 +1176,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5304293933444433709, guid: b6625498a7fcd4db1832ff3b1f5cfcab, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 8502028204453024795, guid: 4a8f1583239f54a7db97c06c2892bb57, type: 3}
+    - target: {fileID: 5304293933444433709, guid: b6625498a7fcd4db1832ff3b1f5cfcab, type: 3}
       propertyPath: groundMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
