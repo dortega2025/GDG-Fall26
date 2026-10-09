@@ -250,7 +250,7 @@ MonoBehaviour:
   checkRadius: 0.2
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   bulletPrefab: {fileID: 1833276178359229209, guid: 4a8f1583239f54a7db97c06c2892bb57, type: 3}
   edge: {fileID: 6148554969593545901}
   arm: {fileID: 9140436722351958164}

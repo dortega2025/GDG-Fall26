@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private float moveSpeed = 5f;
-    private float jumpForce = 10f;
+    private float moveSpeed = 10f;
+    private float jumpForce = 20f;
     public Rigidbody2D rb;
     private Vector2 inputVector = Vector2.zero;
     public float checkRadius = 0.1f;
@@ -16,10 +16,13 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject edge;
     [SerializeField] private GameObject arm;
     private float fireSpeed = 10f;
+    private float timeSinceShot;
+    private float shotTimer = 1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        timeSinceShot = shotTimer;
     }
 
     // Update is called once per frame
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     {
         isGrounded = CheckGrounded();
         Movement();
+        timeSinceShot += Time.deltaTime;
     }
 
     bool CheckGrounded()
@@ -66,16 +70,11 @@ public class Player : MonoBehaviour
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && timeSinceShot > shotTimer)
         {
             Shoot();
+            timeSinceShot = 0;
         }
-        StartCoroutine(Wait());
-    }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(2f);
     }
 
     void Shoot()
@@ -86,10 +85,12 @@ public class Player : MonoBehaviour
         Vector3 mousePos = new Vector3(mousePosX, mousePosY, 0f);
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3 direction = mousePos - transform.position;
+        direction.z = 0f;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         angle = Mathf.Repeat(angle, 360);
-        angle = angle - transform.rotation.z;
+        angle -= transform.rotation.z;
+        direction = direction.normalized;
         bullet = Instantiate(bulletPrefab, edge.transform.position, Quaternion.Euler(0, 0, angle));
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * fireSpeed, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * fireSpeed, ForceMode2D.Impulse);
     }
 }
