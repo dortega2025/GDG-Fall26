@@ -27,7 +27,7 @@ public class Arm : MonoBehaviour
         Vector3 direction = mousePos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         angle = Mathf.Repeat(angle, 360);
-        angle = angle - transform.rotation.z;
+        angle -= transform.rotation.z;
         transform.eulerAngles = new Vector3(0, 0, angle);
     }
 }

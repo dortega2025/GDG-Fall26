@@ -6,34 +6,12 @@ public class Bullet : MonoBehaviour
 {
     private float time;
     private Rigidbody2D rb;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask enemyLayer;
-
-    bool TouchingDeath()
-    {
-        Vector2 position = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = 0f;
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-        if (hit.collider != null) {
-            return true;
-        }
-        else
-        {
-            hit = Physics2D.Raycast(position, direction, distance, enemyLayer);
-            if (hit.collider != null) 
-            {
-            return true;
-            }
-            return false;
-            
-        }
-        
-    }
+    private Collider2D collider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CapsuleCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -53,15 +31,14 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (TouchingDeath())
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void Move(Vector2 direction,float Speed)
     {
         rb.AddForce(direction.normalized * Speed, ForceMode2D.Impulse);
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }
