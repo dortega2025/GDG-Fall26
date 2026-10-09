@@ -6,18 +6,18 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private float moveSpeed = 5f;
-    private float jumpForce = 10f;
-    public Rigidbody2D rb;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] Rigidbody2D rb;
     private Vector2 inputVector = Vector2.zero;
     public float checkRadius = 0.1f;
-    public LayerMask groundMask;
+    [SerializeField] LayerMask groundMask;
     private bool isGrounded;
     public int HP;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject edge;
     [SerializeField] private GameObject arm;
-    private float fireSpeed = 10f;
+    [SerializeField] private float fireSpeed = 10f;
     [SerializeField] private float AtkSpeed;//how quickly the player can attack
     private float AtkTimer;
     [SerializeField] private float Invul;
@@ -142,6 +142,7 @@ public class Player : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         angle = Mathf.Repeat(angle, 360);
         angle = angle - transform.rotation.z;
+        direction.z=0;
         bullet = Instantiate(bulletPrefab, edge.transform.position, Quaternion.Euler(0, 0, angle));
         bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * fireSpeed, ForceMode2D.Impulse);      
     }
