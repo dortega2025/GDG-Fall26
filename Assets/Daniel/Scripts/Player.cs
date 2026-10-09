@@ -6,9 +6,11 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 10f;
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField]private float moveSpeed = 5f;
+    [SerializeField]private float jumpForce;
+    [SerializeField] private int JumpNumMax;
+    public int JumpNum;
+    public Rigidbody2D rb;
     private Vector2 inputVector = Vector2.zero;
     public float checkRadius = 0.1f;
     [SerializeField] LayerMask groundMask;
@@ -17,11 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject edge;
     [SerializeField] private GameObject arm;
-    [SerializeField] private float fireSpeed = 10f;
+    [SerializeField]private float fireSpeed;
     [SerializeField] private float AtkSpeed;//how quickly the player can attack
     private float AtkTimer;
     [SerializeField] private float Invul;
-    [SerializeReference] private GameObject MainCam;
     private float InvulTimer;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);// destroy bullet to stop it from gunking anything up
             if (HP <= 0)//Check here if dead, so we dont wait until no longer invul
             {
-                MainCam.transform.parent = null;
                 gameObject.SetActive(false);
                 ActivateDeathUI.instance.ActivateUI();
             }
@@ -42,14 +42,6 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);//destroys bullet regardless
         }
     }
-
-    void Awake()
-    {
-        MainCam.transform.parent = transform;
-    }
-
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,6 +52,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded = CheckGrounded();
+        if (isGrounded)
+        {
+            JumpNum = JumpNumMax;
+        }
         Movement();
     }
     void Update()
@@ -105,14 +101,16 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded)
+        if (context.performed && isGrounded || JumpNum >= 1)
         {
+            JumpNum -= 1;
             Jump();
         }
     }
 
     void Jump()
     {
+        JumpNum -= 1;
         rb.linearVelocityY = jumpForce;
     }
 
@@ -136,14 +134,23 @@ public class Player : MonoBehaviour
         GameObject bullet;
         float mousePosX = Mouse.current.position.x.ReadValue();
         float mousePosY = Mouse.current.position.y.ReadValue();
-        Vector3 mousePos = new Vector3(mousePosX, mousePosY, 0f);
+        Vector3 mousePos = new Vector3(mousePosX, mousePosY, 0);
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3 direction = mousePos - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         angle = Mathf.Repeat(angle, 360);
         angle = angle - transform.rotation.z;
-        direction.z=0;
+        direction.z = 0;
         bullet = Instantiate(bulletPrefab, edge.transform.position, Quaternion.Euler(0, 0, angle));
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * fireSpeed, ForceMode2D.Impulse);      
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * (1f*fireSpeed), ForceMode2D.Impulse);      
+    }
+
+    public void TakeDamage(int Dmg)
+    {
+        if(InvulTimer == 0)
+        {
+            HP -= Dmg;
+            InvulTimer = Invul;
+        } 
     }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1917095519568176762}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: 'DroppingPlatform '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1262463107489945656}
   - component: {fileID: 1577478336775529709}
   - component: {fileID: 4071480852810660339}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,3 +205,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroppingPlatform
   Lifespan: 100
+  Life: 0
