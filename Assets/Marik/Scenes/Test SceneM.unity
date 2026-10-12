@@ -268,7 +268,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119341570106161151, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 228988490702515984, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -312,7 +312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4322798342251474126, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6108368146079981682, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: m_Name
@@ -320,12 +320,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6108368146079981682, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6481743182715429460, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: MainCam
       value: 
       objectReference: {fileID: 953377964}
+    - target: {fileID: 6481743182715429460, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
+      propertyPath: fireSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6481743182715429460, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: groundMask.m_Bits
       value: 64
@@ -340,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7740797161888499786, guid: c0e13c2d60b9c4c40a5eb7386560ba64, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
