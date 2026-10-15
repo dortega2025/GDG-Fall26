@@ -1,14 +1,17 @@
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     private float time;
     private Rigidbody2D rb;
+    private Collider2D collider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CapsuleCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -33,5 +36,9 @@ public class Bullet : MonoBehaviour
     public void Move(Vector2 direction,float Speed)
     {
         rb.AddForce(direction.normalized * Speed, ForceMode2D.Impulse);
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }
