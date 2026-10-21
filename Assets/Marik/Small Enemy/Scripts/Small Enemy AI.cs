@@ -8,13 +8,16 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.U2D.IK;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 public class Small_Enemy_Basic_AI : MonoBehaviour
 {
-    public enum BulletFireType {Standered, Lob}; //TODO
+    public enum BulletFireTypes {Standered, Lob};
+    public enum HomeingTypes {Nudge, Absolute, Turn};
 
     [Header("Connections")]
-    [SerializeField] private GameObject player;
+    private GameObject player;
     [SerializeField] private Rigidbody2D rigBod;
     [SerializeField] private GameObject PrefabBullet;
     ///////////////////////////////////////////////////////////
@@ -33,9 +36,10 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     [Header("General Behavior")]
     [SerializeField] private bool hyperAgro; //If true, once agroed, won't de-agro
-    //[SerializeField] bool canJump;
+    //[SerializeField] bool canJump; //TODO
     [SerializeField] private bool isSmart; //If true, won't fall in pits
-    [SerializeField] private bool flys; //TODO Everything
+    [SerializeField] private bool flys; 
+    [SerializeField] private bool activeAgroFlight; 
     [SerializeField] private bool ignorCollision; //TODO 
     [SerializeField] private bool solidToPlayer; //TODO
     [SerializeField] private bool lockDamage; //Forces each hit to this enemy deal one damage
@@ -47,32 +51,36 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     [Header("Attack")] 
     [SerializeField] private float touchDamage;
-    [SerializeField] private int projectilesPerFire; //TODO //The number of projectiles launched at a single fire
-    [SerializeField] private int projectilesPerBurst; //TODO //How many times does the weopon fire in succstion
+    [SerializeField] private float bulletDamage;
+    [SerializeField] private int projectilesPerFire; //The number of projectiles launched at a single fire
+    [SerializeField] private int projectilesPerBurst; //How many times does the weopon fire in succstion
     [SerializeField] private float timeBetweenBurstFiredProjectiles; //Bigger number, the longer it takes
     [SerializeField] private bool chargeAttack; //Means once player enters attack range, enemy will wait firerate befor firing
     [SerializeField] private int fireRate; //Bigger the number, lower the fire rate
-    [SerializeField] private float bulletSpread; //In degrees, maximum possible deviation from attempted target
+    [SerializeField] private float bulletSpread; //Maximum possible deviation from attempted target
 
     [Header("Projectile Behavior")]
-    [SerializeField] private bool specialRangedAttack; //When turned on, ... All below "Projectile Behavior" options will be ignored, a spetialized bullet prefab should be used
-    [SerializeField] private float bulletLifeSpan; //TODO
-    [SerializeField] private float bulletVelocity; // TODO
-    [SerializeField] private float gravitationalEffect; //TODO
-    [SerializeField] private float bulletHomingPower; //TODO
-    [SerializeField] private BulletFireType bulletFireType; //TODO
+    //[SerializeField] private bool specialRangedAttack; //When turned on, ... All below "Projectile Behavior" options will be ignored, a spetialized bullet prefab should be used
+    [SerializeField] private float bulletLifeSpan;
+    [SerializeField] private float bulletVelocity; 
+    [SerializeField] private float gravitationalEffect;
+    [SerializeField] private HomeingTypes homeingType;
+    [SerializeField] private float bulletHomingPower;
+    [SerializeField] private BulletFireTypes bulletFireType; //TODO
 
     [Header("Projectile Collisions")]
     [SerializeField] private bool bulletsDestroyedByObstacles; //TODO
-    [SerializeField] private bool projectileFriendlyFire; //TODO
-    [SerializeField] private bool projectileCollidesWithFriendly; //TODO
-    [SerializeField] private bool projectileCollidesWithFriendlyBullets; //TODO
+    [SerializeField] private bool projectileFriendlyFire;
+    [SerializeField] private bool projectileCollidesWithFriendly;
+    [SerializeField] private bool projectileCollidesWithFriendlyBullets;
     [SerializeField] private bool projectileCollidesWithPlayerBullets; //TODO
 
     [Header("Projectile Explotion")]
     [SerializeField] private bool projectileExplodesOnDestruction; //TODO
-    [SerializeField] private float projectileExplotionDamage; //TODO
-    [SerializeField] private float projectileExplotionRange; //TODO
+    [SerializeField] private bool projectileExplosionDamageFallsOff; //TODO //Also applies to force
+    [SerializeField] private float projectileExplosionForce; //TODO
+    [SerializeField] private float projectileExplosionDamage; //TODO
+    [SerializeField] private float projectileExplosionRange; //TODO
 
 
     [Header("Attack Range")]
@@ -85,10 +93,11 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     [Header("Final Blast")] //TODO Everything
     [SerializeField] private bool finalBlast;
-    [SerializeField] private float earlyBlastSetoffRange;
+    [SerializeField] private bool finalBlastDamageFallsOff; //Also applies to force
+    [SerializeField] private float finalBlastForce;
+    [SerializeField] private float finalBlastSetoffRange;
     [SerializeField] private float finalBlastDamage;
     [SerializeField] private float finalBlastRadius;
-    [SerializeField] private float finalBlastForce;
 
     [Header("Patrol")]
     [SerializeField] private bool useVisualPatrolPoints;
@@ -99,6 +108,28 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private float patrolRangeRight;
     [SerializeField] private float patrolRangeLeftY;
     [SerializeField] private float patrolRangeRightY;
+
+    private void OnValidate()
+    {
+        health = Mathf.Max(0f, health);
+        invincibilityTime = Mathf.Max(0, invincibilityTime);
+
+        projectilesPerFire = Mathf.Max(0, projectilesPerFire);
+        projectilesPerBurst = Mathf.Max(0, projectilesPerBurst);
+        bulletLifeSpan = Mathf.Max(0f, bulletLifeSpan);
+        fireRate = Mathf.Max(0, fireRate);
+
+        finalBlastRadius = Mathf.Max(0f, finalBlastRadius);
+        finalBlastSetoffRange = Mathf.Max(0f, finalBlastSetoffRange);
+
+        agroRange = Mathf.Max(0f, agroRange);
+        attackRangeOuter = Mathf.Max(0f, attackRangeOuter);
+        attackRangeOuter = Mathf.Max(0f, attackRangeInner);
+
+        patrolRangeLeft = Mathf.Max(0f, patrolRangeLeft);
+        patrolRangeLeft = Mathf.Max(0f, patrolRangeRight);
+    }
+
     private bool neverAgroed = true;
     private bool justAgroed = false;
     private Vector3 rightPatrolPoint;
@@ -106,10 +137,19 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     private bool movingToRightPatrol;
     private int timeToVincibility = 0;
     private int timeTillShoot = 0;
+    private int burstRemaining = 0;
+    private float timeTillBurstContinue;
     private bool noWeopon = false;
+
+    private GameObject[] players;
     
     void Start()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
+
+        burstRemaining = projectilesPerBurst;
+        timeTillBurstContinue = timeBetweenBurstFiredProjectiles;
+
         if (flys) {rigBod.gravityScale = 0;}
 
         CheckForVisualRanges();
@@ -132,6 +172,26 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     void FixedUpdate()
     {
+        int len = players.Length;
+        if (len > 1)
+        {
+            float closestDistance = -100;
+            for(int i = 0; i < len; i++)
+            {
+                GameObject obj = players[i];
+                float dist = Vector3.Distance(obj.transform.position, transform.position);
+                if (dist < closestDistance || closestDistance == -100)
+                {
+                    closestDistance = dist;
+                    player = obj;
+                }
+            }
+        }
+        else
+        {
+            player = players[0];
+        }
+
         GeneralNumbersUpdate();
 
         WeoponRotationControl();
@@ -149,19 +209,14 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             if (!chasePlayer)
             {
                 rigBod.linearVelocity = new Vector2(0, 0);
-                if (flys) {FlyToPatrolPoint();} else {MoveToPatrolPoint();}
+                if (flys) {FlyToPatrolPoint();} 
+                else {MoveToPatrolPoint();}
             }
 
-            if (attackCheck == 0)
-            {
-                Attack();
-            }
-            else
-            {
-                if (chargeAttack)
-                {
-                    timeTillShoot = fireRate;
-                }
+            if (attackCheck == 0) {Attack();}
+            else  
+            {//If charge attack, reset cooldown when out of range.
+                if (chargeAttack) {timeTillShoot = fireRate;}
             }
         }
         else
@@ -170,13 +225,10 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             if (justAgroed)
             {
                 justAgroed = false;
-                if (resetPatrolRangeWhenDeAgroed)
-                {
-                    SetPatrolPoints();
-                }
+                if (resetPatrolRangeWhenDeAgroed) {SetPatrolPoints();}
             }
-
-            if (flys) {FlyToPatrolPoint();} else {MoveToPatrolPoint();}
+            if (flys) {if(leftPatrolPoint != transform.position) {FlyToPatrolPoint();} else {rigBod.linearVelocity = new Vector3(0,rigBod.linearVelocity.y,0);}} 
+            else {if(leftPatrolPoint.x != transform.position.x) {MoveToPatrolPoint();} else {rigBod.linearVelocity = new Vector3(0,rigBod.linearVelocity.y,0);}}
         }
 
         AnimateSelf();
@@ -185,9 +237,22 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     void OnDestroy()
     {
-        if (finalBlast && GetDistance() <= finalBlastRadius)
+        //Final blast //TODO this is basically in enemy bullet script, make sure to update changes there
+        float distanceFromPlayer = GetDistance();
+        if (finalBlast && distanceFromPlayer <= finalBlastRadius)
         {
-            //TODO add final blast damage
+            if (finalBlastDamageFallsOff)
+            {
+                finalBlastDamage /= distanceFromPlayer*(finalBlastDamage/finalBlastRadius); 
+                finalBlastForce /= distanceFromPlayer*(finalBlastForce/finalBlastRadius); 
+            }
+
+            //player.TakeDamage(finalBlastDamage)
+
+            //Applies force //TODO test
+            Vector3 direction = new Vector3(player.transform.position.x, player.transform.position.y, 0f) - transform.position;
+            direction.z = 0f;
+            player.GetComponent<Rigidbody2D>().AddForce(direction.normalized * finalBlastForce, ForceMode2D.Impulse);
         }
     }
     
@@ -250,48 +315,87 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
         if (timeTillShoot <= 0)
         {
-            for (int i = 0; i < projectilesPerFire; i++)
+
+
+            if (burstRemaining > 0)
             {
-                CreateProjectile();
+                if (timeTillBurstContinue <= 0 || burstRemaining == projectilesPerBurst) 
+                {
+                    for (int i = 0; i < projectilesPerFire; i++)
+                    {
+                        CreateProjectile();
+                    }
+                    burstRemaining --;
+                    timeTillBurstContinue = timeBetweenBurstFiredProjectiles;
+                }
             }
-            timeTillShoot = fireRate;
+            else
+            {
+                timeTillShoot = fireRate;
+                burstRemaining = projectilesPerBurst;
+                timeTillBurstContinue = timeBetweenBurstFiredProjectiles;
+            }
+            timeTillBurstContinue -= 1;
+            
         }
     }
 
     private void CreateProjectile()
     {
-        Debug.Log("Attempting bullet");
-        {
-            
-        }
         float spread = bulletSpread/2;
         spread = UnityEngine.Random.Range(-spread, spread);
 
-        Quaternion spawnAngle = Quaternion.AngleAxis(spread, Vector3.forward).normalized;
+        Vector3 directionToPlayer = player.transform.position - transform.position;
+        directionToPlayer = directionToPlayer.normalized;
+        directionToPlayer.x += spread;
+        directionToPlayer.y += spread;
+        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg - 90 + spread;
+        angle = Mathf.Repeat(angle, 360);
+        angle -= transform.rotation.z;
 
-        GameObject newBullet = Instantiate(PrefabBullet, transform.position, spawnAngle);
+        GameObject newBullet = Instantiate(PrefabBullet, transform.position, Quaternion.Euler(0, 0, angle));
         BasicEnemyBullet script = newBullet.GetComponent<BasicEnemyBullet>();
 
-        Vector3 direction = spawnAngle * Vector3.right;
-        newBullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletVelocity, ForceMode2D.Impulse);
+        newBullet.GetComponent<Rigidbody2D>().AddForce(directionToPlayer * bulletVelocity, ForceMode2D.Impulse);
+        Debug.Log(directionToPlayer);
+        {//Sets bullet variables
+            script.player = player;
+            script.parent = gameObject;
 
-        script.player = player;
+            script.damage = bulletDamage;
+            script.lifeSpan = bulletLifeSpan;
+            script.velocity = bulletVelocity;
 
-        script.lifeSpan = bulletLifeSpan;
-        script.velocity = bulletVelocity;
-        script.gravitationalEffect = gravitationalEffect;
-        script.homingPower = bulletHomingPower;
-        script.destroyedByObstacles = bulletsDestroyedByObstacles;
-        script.friendlyFire = projectileFriendlyFire;
-        script.collidesWithFriendly = projectileCollidesWithFriendly;
-        script.collidesWithFriendlyBullets = projectileCollidesWithFriendlyBullets;
-        script.collidesWithPlayerBullets = projectileCollidesWithPlayerBullets;
+            script.gravitationalEffect = gravitationalEffect;
+            script.homingPower = bulletHomingPower;
+            script.homeingType = homeingType;
+
+            script.explodesOnDestruction = projectileExplodesOnDestruction;
+            script.explosionDamageFallsOff = projectileExplosionDamageFallsOff;
+            script.explosionForce = projectileExplosionForce;
+            script.explosionDamage = projectileExplosionDamage;
+            script.explosionRange = projectileExplosionRange;
+
+            script.destroyedByObstacles = bulletsDestroyedByObstacles;
+            script.friendlyFire = projectileFriendlyFire;
+            script.collidesWithFriendly = projectileCollidesWithFriendly;
+            script.collidesWithFriendlyBullets = projectileCollidesWithFriendlyBullets;
+            script.collidesWithPlayerBullets = projectileCollidesWithPlayerBullets;
+        }
     }
     
     private float GetDistance()
     {
-        float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
-        return distanceFromPlayer;
+        if (player != null)
+        {
+            float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
+            return distanceFromPlayer;
+        }
+        else
+        {
+            return 10000;
+        }
+
     }
 
     private int AgroMove()
@@ -351,51 +455,46 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     {
         if ((GetDistance() < attackRangeOuter) && (GetDistance() > attackRangeInner))
         {
+            if (!activeAgroFlight) {rigBod.linearVelocity = new Vector3(0,0,0);}
             return 0; //Attack
         }
         else
-        {
-            return 0;
+        {    
+            Vector3 nextPoint = player.transform.position;
+            Vector3 direction = nextPoint - transform.position;
+            direction = direction.normalized;
+            if (GetDistance() > attackRangeOuter) {rigBod.linearVelocity = direction*patrolMoveSpeed;}
+            else {rigBod.linearVelocity = -direction*patrolMoveSpeed;}
+              
+            return -10;
         }
     }
 
     private void FlyToPatrolPoint()
     {
-        if (movingToRightPatrol)
+        Debug.Log(transform.position);
+
+        Vector3 nextPoint;
+        if (movingToRightPatrol) {nextPoint = rightPatrolPoint;}
+        else {nextPoint = leftPatrolPoint;}
+
+        if (Vector3.Distance(transform.position, nextPoint) < 1)
         {
-            if (Vector3.Distance(rightPatrolPoint, transform.position) < 3)
-            {//At patrol point right
-                movingToRightPatrol = false;
-            }
-            else
-            {//Move to patrol point right
-                Vector3 direction = rightPatrolPoint - transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                angle = Mathf.Repeat(angle, 360);
-                angle -= transform.rotation.z;
-                 //= new Vector3(0, 0, angle);
-                
-            }
+            if (movingToRightPatrol) {movingToRightPatrol = false;}
+            else {movingToRightPatrol = true;}
+            Debug.Log(nextPoint);
+            return;
         }
-        else//Moving to left patrol
-        {
-            if (Vector3.Distance(rightPatrolPoint, transform.position) < 3)
-            {//At patrol point left
-                movingToRightPatrol = true;
-            }
-            else
-            {//Move to patrol left right
-                
-            }
-        }
+
+        Vector3 direction = nextPoint - transform.position;
+        direction = direction.normalized;
+        rigBod.linearVelocity = direction*patrolMoveSpeed;
     }
     
     private void MoveToPatrolPoint()
     {
-        if (!CheckGrounded())
-        {
-            return;
-        }
+        if (!CheckGrounded()) {return;}
+
         if (movingToRightPatrol)
         {
             if ((rightPatrolPoint[0] < transform.position.x) || (!IsGroundAtNextPositon("Right")) || IsWallAtPosition("Right"))
@@ -430,7 +529,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         else
         {
              leftPatrolPoint = new Vector3(transform.position.x - patrolRangeLeft, transform.position.y + patrolRangeLeftY, 0);
-             rightPatrolPoint = new Vector3(transform.position.x + transform.position.y, transform.position.y + patrolRangeRightY, 0);
+             rightPatrolPoint = new Vector3(transform.position.x + patrolRangeRight, transform.position.y + patrolRangeRightY, 0);
         }
         Debug.Log("Patrol points set:");
         Debug.Log("Left:"); Debug.Log(leftPatrolPoint);
@@ -528,10 +627,8 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     {
         switch (bulletFireType)
         {
-            case BulletFireType.Standered:
-                float playerPosX = player.transform.position.x;
-                float playerPosY = player.transform.position.y;
-                Vector3 playerPos = new Vector3(playerPosX, playerPosY, 0f);
+            case BulletFireTypes.Standered:
+                Vector3 playerPos = new Vector3(player.transform.position.x, player.transform.position.y, 0f);
                 Vector3 direction = playerPos - transform.position;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
                 angle = Mathf.Repeat(angle, 360);
@@ -543,7 +640,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private void AnimateSelf()
     {
-        
+        //TODO
     }
     
     public void TakeDamage(float DMG)
