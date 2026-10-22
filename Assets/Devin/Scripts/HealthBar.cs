@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +14,9 @@ public class HealthBar : MonoBehaviour
     temporary, but is currently required to simulate damage.
     */
 
-    public Slider slider;
-    public Gradient gradient;
-    public Image fill;
+    [SerializeField] private Slider slider;
+    [SerializeField] private Gradient gradient;
+    [SerializeField] private Image fill;
 
     public void SetMaxHealth (float health)
     {

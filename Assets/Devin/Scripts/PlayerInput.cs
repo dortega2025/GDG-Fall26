@@ -45,6 +45,7 @@ public class PlayerInput : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         jumpCount = jumpMAX;
+        GlobalAmmo.handgunAmmoCount = GlobalAmmo.handgunAmmoCountMax;
     }
 
     // Handles WASD / Left Stick Left and Right
@@ -200,4 +201,13 @@ public class PlayerInput : MonoBehaviour
             IsFacingRight = !IsFacingRight;
         }
     }
+    public void Attack(InputAction.CallbackContext context)
+    {
+        if (context.started && GlobalAmmo.handgunAmmoCount != 0)
+        {
+            Debug.Log("Shots Fired");
+            GlobalAmmo.handgunAmmoCount -= 1;    
+        }
+    }
+
 }
