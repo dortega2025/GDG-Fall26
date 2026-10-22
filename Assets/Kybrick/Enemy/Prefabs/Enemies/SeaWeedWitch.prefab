@@ -177,15 +177,15 @@ MonoBehaviour:
   Hp: 20
   InvulMax: 3
   AtkTimer: 0
-  Speed: 0
+  Speed: 5
   TravelDistance: 0
   AtkObA: {fileID: 8032864220154749542, guid: 6154e3090c6756f4b9815dd615a4ff0f, type: 3}
   AtkGenA: {fileID: 1099900568891347693}
   ProbabilityA: 20
   AtkCoolDwnA: 30
-  NodeLU: {fileID: 0}
-  NodeRD: {fileID: 0}
-  AtkObB: {fileID: 0}
+  NodeLU: {fileID: 4163645941372325277}
+  NodeRD: {fileID: 6166426573278508073}
+  AtkObB: {fileID: 2055076971041138873, guid: 0f2bf8a7c579fb548b13f37b14a1d799, type: 3}
   ProbabilityB: 100
   AtkCoolDwnB: 10
   AtkObC: {fileID: 0}

@@ -121,6 +121,14 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (AtkTimer >= 0 && AtkTimer - 1*Time.deltaTime >=0)
+        {
+            AtkTimer -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            AtkTimer = 0;
+        }
         //Squish
         if (isDashing && Squish.transform.localScale.y <= 1)
         {
@@ -172,9 +180,7 @@ public class PlayerInput : MonoBehaviour
          Debug.Log("PerformDash Executed");
         canDash = false;
         isDashing = true;
-       
-
-
+      
         // Remember the regular gravity setting so we can restore it later
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f; // Turn off gravity so the player doesn't dip downwards mid-dash
@@ -257,7 +263,7 @@ public class PlayerInput : MonoBehaviour
     }
     public void OnClick(InputAction.CallbackContext context)
     {
-        if (context.performed && AtkTimer == 0)
+        if (context.performed && AtkTimer == 0)//&& CanShoot
         {
             AtkTimer = AtkSpeed;
             Shoot();
@@ -275,8 +281,9 @@ public class PlayerInput : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         angle = Mathf.Repeat(angle, 360);
         angle = angle - transform.rotation.z;
-        direction.z = 0;
+        direction.z= 0;
+        direction = direction.normalized;
         bullet = Instantiate(bulletprefab, Generator.transform.position, Quaternion.Euler(0, 0, angle));
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * (1f * BulletSpeed), ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * BulletSpeed, ForceMode2D.Impulse);
     }
 }

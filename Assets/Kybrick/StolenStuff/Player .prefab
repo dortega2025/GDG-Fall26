@@ -259,6 +259,9 @@ MonoBehaviour:
   dashPower: 24
   dashTime: 0.2
   dashCooldown: 1
+  Squish: {fileID: 0}
+  SquishAmount: 0
+  SquishMax: 0
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -284,7 +287,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 6200000, guid: 8ad43dc69e6a2d14ebb1cc6c6e01a661, type: 2}
+  m_Material: {fileID: 6200000, guid: b36207a912d3a684db4b2a32dec73d9a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
