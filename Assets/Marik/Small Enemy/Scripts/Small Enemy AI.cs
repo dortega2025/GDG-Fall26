@@ -26,6 +26,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private GameObject prefabGun; 
     ////////////////////////////////////////////////////////////
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private SpriteRenderer sprite;
 
     [Header("Visual Range Connections")]
     [SerializeField] private GameObject patrolPointLeft;
@@ -60,6 +61,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private float bulletSpread; //Maximum possible deviation from attempted target
 
     [Header("Projectile Behavior")]
+    [SerializeField] private bool doNotPassUntoBullet;
     //[SerializeField] private bool specialRangedAttack; //When turned on, ... All below "Projectile Behavior" options will be ignored, a spetialized bullet prefab should be used
     [SerializeField] private float bulletLifeSpan;
     [SerializeField] private float bulletVelocity; 
@@ -145,7 +147,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     
     void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        FindPlayer();
 
         burstRemaining = projectilesPerBurst;
         timeTillBurstContinue = timeBetweenBurstFiredProjectiles;
@@ -172,26 +174,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     void FixedUpdate()
     {
-        int len = players.Length;
-        if (len > 1)
-        {
-            float closestDistance = -100;
-            for(int i = 0; i < len; i++)
-            {
-                GameObject obj = players[i];
-                float dist = Vector3.Distance(obj.transform.position, transform.position);
-                if (dist < closestDistance || closestDistance == -100)
-                {
-                    closestDistance = dist;
-                    player = obj;
-                }
-            }
-        }
-        else
-        {
-            player = players[0];
-        }
-
         GeneralNumbersUpdate();
 
         WeoponRotationControl();
@@ -358,6 +340,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
         newBullet.GetComponent<Rigidbody2D>().AddForce(directionToPlayer * bulletVelocity, ForceMode2D.Impulse);
         Debug.Log(directionToPlayer);
+        if (!doNotPassUntoBullet)
         {//Sets bullet variables
             script.player = player;
             script.parent = gameObject;
@@ -400,7 +383,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private int AgroMove()
     {
-        if ((GetDistance() < attackRangeOuter) && (GetDistance() > attackRangeInner))
+        if (IsInAttackRange())
         {
             rigBod.linearVelocityX = 0;
             return 0; //Attack
@@ -453,7 +436,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private int AgroFly()
     {
-        if ((GetDistance() < attackRangeOuter) && (GetDistance() > attackRangeInner))
+        if (IsInAttackRange())
         {
             if (!activeAgroFlight) {rigBod.linearVelocity = new Vector3(0,0,0);}
             return 0; //Attack
@@ -470,6 +453,17 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         }
     }
 
+    private bool IsInAttackRange()
+    {
+        if ((GetDistance() < attackRangeOuter) && (GetDistance() > attackRangeInner))
+        {
+            return true;
+        }
+        return false;
+        
+
+    }
+    
     private void FlyToPatrolPoint()
     {
         Debug.Log(transform.position);
@@ -640,7 +634,55 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private void AnimateSelf()
     {
-        //TODO
+        //return;
+        if ((GetDistance() < agroRange) || (!neverAgroed && hyperAgro))
+        {
+            if (transform.position.x - player.transform.position.x > 0) // Look right
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+        }
+        else
+        {
+            if (movingToRightPatrol)
+            {
+                sprite.flipX = false;
+            }
+            else
+            {
+                sprite.flipX = true;
+            }
+            
+        }
+        
+    }
+
+    private void FindPlayer()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        int len = players.Length;
+        if (len > 1)
+        {
+            float closestDistance = -100;
+            for(int i = 0; i < len; i++)
+            {
+                GameObject obj = players[i];
+                float dist = Vector3.Distance(obj.transform.position, transform.position);
+                if (dist < closestDistance || closestDistance == -100)
+                {
+                    closestDistance = dist;
+                    player = obj;
+                }
+            }
+        }
+        else
+        {
+            player = players[0];
+        }
     }
     
     public void TakeDamage(float DMG)

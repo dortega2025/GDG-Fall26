@@ -44,8 +44,6 @@ public class BasicEnemyBullet : MonoBehaviour
     {
         Homeing();
 
-        CollisionsCheck();
-
         if (lifeSpan > 0) {lifeSpan--;} else {Destroy(gameObject);}
 
     }
@@ -71,14 +69,12 @@ public class BasicEnemyBullet : MonoBehaviour
             //Applies force //TODO test
             Vector3 direction = new Vector3(player.transform.position.x, player.transform.position.y, 0f) - transform.position;
             direction.z = 0f;
-            player.GetComponent<Rigidbody2D>().AddForce(direction.normalized * explosionForce, ForceMode2D.Impulse);
+            direction = direction.normalized;
+            Debug.Log(direction);
+            player.GetComponent<Rigidbody2D>().AddForce(direction * explosionForce, ForceMode2D.Impulse);
         }
     }
 
-    private void CollisionsCheck()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
