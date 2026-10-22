@@ -3,9 +3,18 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Unity.Cinemachine.SplineAutoDolly;
 
 public class PlayerInput : MonoBehaviour
 {
+    [Header("ShootSettings")]
+    [SerializeField] private float AtkSpeed;
+    [SerializeField] private float AtkTimer;
+    [SerializeField] private float BulletSpeed;
+    [SerializeField] private float Atk;
+    [SerializeReference] private GameObject bulletprefab;
+    [SerializeReference] private GameObject Generator;
+
     [Header("Movement Settings")]
     [SerializeField] private float speed = 8f;
     [SerializeField] private float jumpForce = 12f;
@@ -16,7 +25,11 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float dashPower = 24f;
     [SerializeField] private float dashTime = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
-    
+    [SerializeField] private GameObject Squish;
+    [SerializeField] private float SquishAmount;
+    [SerializeField] private float SquishMax;
+    private float SquishScaleX;
+    private float SquishScaleY;
 
 
     [Header("Ground Check Settings")]
@@ -42,6 +55,8 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
+        SquishScaleX = Squish.transform.localScale.x;
+        SquishScaleY = Squish.transform.localScale.y;
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         jumpCount = jumpMAX;
@@ -105,15 +120,42 @@ public class PlayerInput : MonoBehaviour
     //Temp code that uses the player input key 'z' to take damage. Eventually this will need to get replaced.
     public void TempTakeDamage(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (AtkTimer >= 0 && AtkTimer - 1*Time.deltaTime >=0)
         {
-          health.TakeDamage(10);  
+            AtkTimer -= 1 * Time.deltaTime;
         }
-
-        if (health.GetHealth() <= 0)
+        else
         {
-            health.InitiateDeath();
-            Debug.Log("Death reached");
+            AtkTimer = 0;
+        }
+        //Squish
+        if (isDashing && Squish.transform.localScale.y <= 1)
+        {
+            if (Squish.transform.localScale.y - SquishAmount >= SquishMax)
+            {
+                SquishScaleY -= SquishAmount;
+                Squish.transform.localScale = new Vector3(1, SquishScaleY, 0);
+            }
+        }
+        else if (isDashing == false)
+        {
+            
+                if (Squish.transform.localScale.y + SquishAmount <= 1)
+                {
+                    SquishScaleY += SquishAmount;
+                    Squish.transform.localScale = new Vector3(1, SquishScaleY, 0);
+                }
+                else
+                {
+                 SquishScaleY = 1;
+                 Squish.transform.localScale = new Vector3(1, SquishScaleY, 0);
+                }
+
+        }
+            if (knockbackTimer > 0)
+        {   
+        knockbackTimer -= Time.fixedDeltaTime;
+        return; // Exits FixedUpdate early so keys can't override the force
         }
         
     }
@@ -142,7 +184,7 @@ public class PlayerInput : MonoBehaviour
          Debug.Log("PerformDash Executed");
         canDash = false;
         isDashing = true;
-
+      
         // Remember the regular gravity setting so we can restore it later
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f; // Turn off gravity so the player doesn't dip downwards mid-dash
@@ -201,13 +243,29 @@ public class PlayerInput : MonoBehaviour
             IsFacingRight = !IsFacingRight;
         }
     }
-    public void Attack(InputAction.CallbackContext context)
+    public void OnClick(InputAction.CallbackContext context)
     {
-        if (context.started && GlobalAmmo.handgunAmmoCount != 0)
+        if (context.performed && AtkTimer == 0)//&& CanShoot
         {
-            Debug.Log("Shots Fired");
-            GlobalAmmo.handgunAmmoCount -= 1;    
+            AtkTimer = AtkSpeed;
+            Shoot();
         }
+       
     }
-
+    void Shoot()
+    {
+        GameObject bullet;
+        float mousePosX = Mouse.current.position.x.ReadValue();
+        float mousePosY = Mouse.current.position.y.ReadValue();
+        Vector3 mousePos = new Vector3(mousePosX, mousePosY, 0);
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3 direction = mousePos - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        angle = Mathf.Repeat(angle, 360);
+        angle = angle - transform.rotation.z;
+        direction.z= 0;
+        direction = direction.normalized;
+        bullet = Instantiate(bulletprefab, Generator.transform.position, Quaternion.Euler(0, 0, angle));
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * BulletSpeed, ForceMode2D.Impulse);
+    }
 }

@@ -13,6 +13,10 @@ public class EnemyTurret : MonoBehaviour
     float AtkTimer;
     public float AggroRange;
     bool On;
+    private void Start()
+    {
+        //Player = GameObject.Find("Player");
+    }
     private void Update()
     {
         if (On)
@@ -24,10 +28,15 @@ public class EnemyTurret : MonoBehaviour
             else
             {
                 AtkTimer = AtkSpd;
-                GameObject Atk = Bullet;
-                Vector2 direction = Square.transform.position - Triangle.transform.position;
-                Instantiate(Atk, transform.position, transform.rotation);
-                Atk.GetComponent<Rigidbody2D>().AddForce( direction.normalized* BulletSpd, ForceMode2D.Impulse); 
+                GameObject Atk;
+                Vector3 direction = Square.transform.position - Triangle.transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg-270;
+                angle = Mathf.Repeat(angle, 360);
+                angle = angle - transform.rotation.z;
+                direction.z = 0;
+                direction = direction.normalized;
+                Atk = Instantiate(Bullet, Generator.transform.position, Quaternion.Euler(0, 0, angle));
+                Atk.GetComponent<Rigidbody2D>().AddForce((direction * BulletSpd)*-1, ForceMode2D.Impulse); 
             }
         }
             CheckDistance();        

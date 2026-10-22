@@ -1,9 +1,8 @@
 using NUnit.Framework;
 using UnityEngine;
 
-public class BossBehaviour : MonoBehaviour
+public class BossBehaviour:MonoBehaviour
 {
-    
     [SerializeField] private float Hp;
     [SerializeField] private float InvulMax;
     [SerializeField] private float AtkTimer;

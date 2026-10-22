@@ -1,9 +1,9 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class SeaWeedWitchBehaviour : MonoBehaviour
 {
-
     [SerializeField] private float Hp;
     [SerializeField] private float InvulMax;
     [SerializeField] private float AtkTimer;
@@ -21,12 +21,15 @@ public class SeaWeedWitchBehaviour : MonoBehaviour
     [SerializeField] private GameObject AtkObC;
     [SerializeField] private int ProbabilityC;
     [SerializeField] private float AtkCoolDwnC;
+    [SerializeReference] private GameObject Door;
+    [SerializeReference] private GameObject Self;
     private int RNG;
     private bool Dir;
     private float TimerA;
     float Distance;//how close it is to next Nodule
     public float DistTolerance;//how close the platform can be before turning around
     private float OldSpd;
+
     void Start()
     {
         OldSpd = Speed;
@@ -55,7 +58,7 @@ public class SeaWeedWitchBehaviour : MonoBehaviour
         {
             TimerA = 0;
         }
-        if(TimerA == 0 && Speed != OldSpd)
+        if (TimerA == 0 && Speed != OldSpd)
         {
             Speed = OldSpd;
         }
@@ -110,11 +113,11 @@ public class SeaWeedWitchBehaviour : MonoBehaviour
     }
 
     public void AttackA()
-    { 
-         OldSpd = Speed;
+    {
+        OldSpd = Speed;
         Speed = Speed / 3;
         TimerA = 6;
-        Instantiate(AtkObA,AtkGenA.transform.localPosition,AtkGenA.transform.localRotation);
+        Instantiate(AtkObA, AtkGenA.transform.localPosition, AtkGenA.transform.localRotation);
         AtkTimer = AtkCoolDwnA;
     }
     public void AttackB()
@@ -131,5 +134,10 @@ public class SeaWeedWitchBehaviour : MonoBehaviour
     public void TakeDamage(int DMG)
     {
         Hp -= DMG;
+        if (Hp <= 0)
+        {
+            Destroy(Door);
+            Destroy(Self);
+        }
     }
 }

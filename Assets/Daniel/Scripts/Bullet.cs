@@ -1,14 +1,17 @@
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float time;
-    private Rigidbody2D rb;
+    [SerializeField] private float time;
+    [SerializeReference] private Rigidbody2D rb;
+    [SerializeReference] private Collider2D collider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CapsuleCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,15 +26,23 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if (time > 3f)
+        
+        if (time <= 0)
         {
             Destroy(gameObject);
+        }
+        else
+        {
+            time -= 1 * Time.deltaTime;
         }
     }
 
     public void Move(Vector2 direction,float Speed)
     {
-        rb.AddForce(direction.normalized * Speed, ForceMode2D.Impulse);
+        rb.AddForce(direction.normalized * (1f * Speed), ForceMode2D.Impulse);
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }
