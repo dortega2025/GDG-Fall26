@@ -579,7 +579,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  sprite: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   patrolPointLeft: {fileID: 1407021320572767822}
   patrolPointRight: {fileID: 2366837977415032774}
   agroRangeVisual: {fileID: 4138828813290657615}
@@ -603,6 +603,7 @@ MonoBehaviour:
   chargeAttack: 0
   fireRate: 50
   bulletSpread: 0.3
+  doNotPassUntoBullet: 0
   bulletLifeSpan: 100
   bulletVelocity: 7
   gravitationalEffect: 0
@@ -655,7 +656,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 837da947fefcde14a8f3e9ad41a64f72, type: 2}
+  m_Material: {fileID: 6200000, guid: b36207a912d3a684db4b2a32dec73d9a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

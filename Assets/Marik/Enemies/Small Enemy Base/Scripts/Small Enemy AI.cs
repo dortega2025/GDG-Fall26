@@ -26,7 +26,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private GameObject prefabGun; 
     ////////////////////////////////////////////////////////////
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Visual Range Connections")]
     [SerializeField] private GameObject patrolPointLeft;
@@ -639,22 +639,22 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         {
             if (transform.position.x - player.transform.position.x > 0) // Look right
             {
-                sprite.flipX = true;
+                spriteRenderer.flipX = true;
             }
             else
             {
-                sprite.flipX = false;
+                spriteRenderer.flipX = false;
             }
         }
         else
         {
             if (movingToRightPatrol)
             {
-                sprite.flipX = false;
+                spriteRenderer.flipX = false;
             }
             else
             {
-                sprite.flipX = true;
+                spriteRenderer.flipX = true;
             }
             
         }
