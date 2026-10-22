@@ -120,7 +120,13 @@ public class PlayerInput : MonoBehaviour
     //Temp code that uses the player input key 'z' to take damage. Eventually this will need to get replaced.
     public void TempTakeDamage(InputAction.CallbackContext context)
     {
-        if (AtkTimer >= 0 && AtkTimer - 1*Time.deltaTime >=0)
+
+        if (context.started)
+        {
+        health.TakeDamage(10);
+        }
+
+        if (AtkTimer >= 0 && AtkTimer - 1 * Time.deltaTime >=0)
         {
             AtkTimer -= 1 * Time.deltaTime;
         }
@@ -152,11 +158,7 @@ public class PlayerInput : MonoBehaviour
                 }
 
         }
-            if (knockbackTimer > 0)
-        {   
-        knockbackTimer -= Time.fixedDeltaTime;
-        return; // Exits FixedUpdate early so keys can't override the force
-        }
+            
         
     }
 
