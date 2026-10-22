@@ -22,6 +22,7 @@ public class MovingPlatform : MonoBehaviour
         {
             Debug.Log("Going to node RD");
         }
+
     }
 
     void FixedUpdate()
