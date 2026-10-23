@@ -251,6 +251,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 0
+  HP: 0
   bulletPrefab: {fileID: 1833276178359229209, guid: 4a8f1583239f54a7db97c06c2892bb57, type: 3}
   edge: {fileID: 6148554969593545901}
   arm: {fileID: 9140436722351958164}
@@ -270,7 +271,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 10c542eecd1b6495db1a8d7822ae4e5f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -418,6 +419,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 21d40978-97c6-4dfe-b78e-1fa28397e492
+    m_ActionName: 'Player/Dash[/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
