@@ -550,7 +550,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6704134128806620026, guid: d56a781b6707c1e4b978b3d5141b023a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -572,14 +572,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6194c1b0183c0449e07aefedf14c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Small_Enemy_Basic_AI
-  rigBod: {fileID: 516800640744068982}
   PrefabBullet: {fileID: 3377238866424734443, guid: c7bf2ed62274a59449c3a3ece1843a2f, type: 3}
   gun: {fileID: 0}
   prefabGun: {fileID: 592198133135543074, guid: 3afd26a5cc0bfb040bab66d894359c1d, type: 3}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  spriteRenderer: {fileID: 0}
   patrolPointLeft: {fileID: 1407021320572767822}
   patrolPointRight: {fileID: 2366837977415032774}
   agroRangeVisual: {fileID: 4138828813290657615}
@@ -589,8 +587,7 @@ MonoBehaviour:
   isSmart: 1
   flys: 0
   activeAgroFlight: 0
-  ignorCollision: 0
-  solidToPlayer: 1
+  ignorAllCollision: 0
   lockDamage: 0
   chasePlayer: 1
   health: 5

@@ -10,15 +10,18 @@ using UnityEngine;
 using UnityEngine.U2D.IK;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class Small_Enemy_Basic_AI : MonoBehaviour
 {
-    public enum BulletFireTypes {Standered, Lob};
+    public enum BulletFireTypes {Standered, Lob, Special};
     public enum HomeingTypes {Nudge, Absolute, Turn};
 
     [Header("Connections")]
     private GameObject player;
-    [SerializeField] private Rigidbody2D rigBod;
+    private Rigidbody2D rigBod;
+    private Collider MainCollider;
+    private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject PrefabBullet;
     ///////////////////////////////////////////////////////////
     ///Only give a prefab gun, or a already made gun
@@ -26,7 +29,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private GameObject prefabGun; 
     ////////////////////////////////////////////////////////////
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Visual Range Connections")]
     [SerializeField] private GameObject patrolPointLeft;
@@ -41,8 +43,8 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private bool isSmart; //If true, won't fall in pits
     [SerializeField] private bool flys; 
     [SerializeField] private bool activeAgroFlight; 
-    [SerializeField] private bool ignorCollision; //TODO 
-    [SerializeField] private bool solidToPlayer; //TODO
+    [SerializeField] private bool ignorAllCollision; //TODO 
+    //[SerializeField] private bool solidToPlayer; //TODO
     [SerializeField] private bool lockDamage; //Forces each hit to this enemy deal one damage
     [SerializeField] private bool chasePlayer; //Can attack player but continues patrol
 
@@ -71,11 +73,11 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private BulletFireTypes bulletFireType; //TODO
 
     [Header("Projectile Collisions")]
-    [SerializeField] private bool bulletsDestroyedByObstacles; //TODO
+    [SerializeField] private bool bulletsDestroyedByObstacles; 
     [SerializeField] private bool projectileFriendlyFire;
     [SerializeField] private bool projectileCollidesWithFriendly;
     [SerializeField] private bool projectileCollidesWithFriendlyBullets;
-    [SerializeField] private bool projectileCollidesWithPlayerBullets; //TODO
+    [SerializeField] private bool projectileCollidesWithPlayerBullets;
 
     [Header("Projectile Explotion")]
     [SerializeField] private bool projectileExplodesOnDestruction; //TODO
@@ -147,16 +149,15 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     
     void Start()
     {
-        FindPlayer();
+        AutoConnections();
+        CheckForVisualRanges();
+        InitializePartol();
 
         burstRemaining = projectilesPerBurst;
         timeTillBurstContinue = timeBetweenBurstFiredProjectiles;
 
         if (flys) {rigBod.gravityScale = 0;}
-
-        CheckForVisualRanges();
-
-        InitializePartol();
+        if (ignorAllCollision) {MainCollider.isTrigger = true;}
 
         if (prefabGun != null)
         {
@@ -166,9 +167,8 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         if (gun == null)
         {
             noWeopon = true;
-            Debug.Log("No weopon equipt!!!");
+            Debug.Log("No weapon equipped!!!");
         }
-
 
     }
 
@@ -197,7 +197,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
             if (attackCheck == 0) {Attack();}
             else  
-            {//If charge attack, reset cooldown when out of range.
+            {//If charge attack, reset cool down when out of range.
                 if (chargeAttack) {timeTillShoot = fireRate;}
             }
         }
@@ -238,6 +238,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         }
     }
     
+
     private void CheckForVisualRanges()
     {
         if (useVisualPatrolPoints)
@@ -340,7 +341,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
         newBullet.GetComponent<Rigidbody2D>().AddForce(directionToPlayer * bulletVelocity, ForceMode2D.Impulse);
         Debug.Log(directionToPlayer);
-        if (!doNotPassUntoBullet)
+        if (!doNotPassUntoBullet) //In case the bullet is doing its own special stuff
         {//Sets bullet variables
             script.player = player;
             script.parent = gameObject;
@@ -658,9 +659,25 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             }
             
         }
+
+        if (timeToVincibility > 0)
+        {
+            
+        }
         
     }
 
+    private void AutoConnections()
+    {
+        FindPlayer();
+
+        rigBod = GetComponent<Rigidbody2D>();
+
+        MainCollider = GetComponent<Collider>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    
     private void FindPlayer()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
