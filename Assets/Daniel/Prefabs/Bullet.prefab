@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3357908600190353290}
   - component: {fileID: 4893121183861717366}
   - component: {fileID: 6088346158973730040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: PBullet
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 40
+    m_Bits: 296
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

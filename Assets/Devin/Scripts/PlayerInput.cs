@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -39,16 +40,13 @@ public class PlayerInput : MonoBehaviour
     private bool IsFacingRight = true;
 
     [Header("Health and Damage and Stuff")]
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float currentHealth;
-    [SerializeField] private float knockbackForce;
-    [SerializeField] private float knockbackDuration = 0.2f;
-    [SerializeField] private float  IFrames = 0.5f;
-    private float knockbackTimer;
+    [SerializeField] private Health health; //temp to handle damage
+    
 
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
+
     
     // Dash state tracking
     private bool canDash = true;
@@ -62,7 +60,7 @@ public class PlayerInput : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
         jumpCount = jumpMAX;
-        currentHealth = maxHealth;
+        GlobalAmmo.handgunAmmoCount = GlobalAmmo.handgunAmmoCountMax;
     }
 
     // Handles WASD / Left Stick Left and Right
@@ -119,9 +117,16 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    //Temp code that uses the player input key 'z' to take damage. Eventually this will need to get replaced.
+    public void TempTakeDamage(InputAction.CallbackContext context)
     {
-        if (AtkTimer >= 0 && AtkTimer - 1*Time.deltaTime >=0)
+
+        if (context.started)
+        {
+        health.TakeDamage(10);
+        }
+
+        if (AtkTimer >= 0 && AtkTimer - 1 * Time.deltaTime >=0)
         {
             AtkTimer -= 1 * Time.deltaTime;
         }
@@ -153,11 +158,12 @@ public class PlayerInput : MonoBehaviour
                 }
 
         }
-            if (knockbackTimer > 0)
-        {   
-        knockbackTimer -= Time.fixedDeltaTime;
-        return; // Exits FixedUpdate early so keys can't override the force
-        }
+            
+        
+    }
+
+    void FixedUpdate()
+    {
         
         // Stop normal movement physics if the player is currently dashing
         if (isDashing) return;
@@ -209,29 +215,7 @@ public class PlayerInput : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) 
-{
-    if (collision.gameObject.CompareTag("Hurt")) 
-    {
-        Debug.Log("Hurt touched!");
-        StartCoroutine(TakeDamage(collision.transform));
-    }
-}
-
-    private IEnumerator TakeDamage(Transform hazardTransform)
-    {
-        knockbackTimer = knockbackDuration;
-        currentHealth -= 10;
-        yield return new WaitForSeconds(3);
-        // Calculate the direction away from the hazard
-        Vector2 knockbackDirection = (transform.position - hazardTransform.position).normalized;
-
-        // Reset velocity so previous movement doesn't interfere with the fling
-        rb.linearVelocity = Vector2.zero; 
-
-        // Apply the force (Impulse is best for sudden, instant forces like a explosion or fling)
-        rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-    }
+    
 
     private void turnCheck()
     {
