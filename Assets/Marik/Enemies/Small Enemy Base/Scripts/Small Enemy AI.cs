@@ -20,7 +20,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [Header("Connections")]
     private GameObject player;
     private Rigidbody2D rigBod;
-    private Collider MainCollider;
+    private Collider2D MainCollider;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject PrefabBullet;
     ///////////////////////////////////////////////////////////
@@ -94,6 +94,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private bool useVisualAttackRanges;
     [SerializeField] private float attackRangeOuter;
     [SerializeField] private float attackRangeInner;
+    [SerializeField] private bool centerTarget; //Attemtps to keep the player in the center of its attack range
 
     [Header("Final Blast")] //TODO Everything
     [SerializeField] private bool finalBlast;
@@ -112,6 +113,14 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private float patrolRangeRight;
     [SerializeField] private float patrolRangeLeftY;
     [SerializeField] private float patrolRangeRightY;
+
+    [Header("Other")]
+    [SerializeField] private bool points;
+
+    [Header("Sounds")]
+
+    [Header("Debug")]
+    [SerializeField] private bool keepVisualMarkers;
 
     private void OnValidate()
     {
@@ -139,6 +148,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     private Vector3 rightPatrolPoint;
     private Vector3 leftPatrolPoint;
     private bool movingToRightPatrol;
+    private float middleRangeDistance;
     private int timeToVincibility = 0;
     private int timeTillShoot = 0;
     private int burstRemaining = 0;
@@ -153,6 +163,9 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         CheckForVisualRanges();
         InitializePartol();
 
+        middleRangeDistance = (attackRangeInner + attackRangeOuter)/2f;
+
+        //Attack prep
         burstRemaining = projectilesPerBurst;
         timeTillBurstContinue = timeBetweenBurstFiredProjectiles;
 
@@ -161,7 +174,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
         if (prefabGun != null)
         {
-            gun = Instantiate(prefabGun, transform.position, transform.rotation);
+            gun = Instantiate(prefabGun, new Vector3(transform.position.x, transform.position.y, -2f), transform.rotation);
         }
         gun.transform.parent = gameObject.transform;
         if (gun == null)
@@ -179,7 +192,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         WeoponRotationControl();
 
         ///Movement
-        if ((GetDistance() < agroRange) || (!neverAgroed && hyperAgro))
+        if ((GetDistanceToPlayer() < agroRange) || (!neverAgroed && hyperAgro))
         {
             //Agroed
             int attackCheck;
@@ -199,6 +212,12 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             else  
             {//If charge attack, reset cool down when out of range.
                 if (chargeAttack) {timeTillShoot = fireRate;}
+
+                //Continues burst
+                if (burstRemaining != projectilesPerBurst)
+                {
+                    Attack();
+                }
             }
         }
         else
@@ -220,7 +239,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     void OnDestroy()
     {
         //Final blast //TODO this is basically in enemy bullet script, make sure to update changes there
-        float distanceFromPlayer = GetDistance();
+        float distanceFromPlayer = GetDistanceToPlayer();
         if (finalBlast && distanceFromPlayer <= finalBlastRadius)
         {
             if (finalBlastDamageFallsOff)
@@ -238,7 +257,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         }
     }
     
-
     private void CheckForVisualRanges()
     {
         if (useVisualPatrolPoints)
@@ -248,20 +266,20 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             patrolRangeLeftY = patrolPointLeft.transform.position.y - transform.position.y;
             patrolRangeRightY = patrolPointRight.transform.position.y - transform.position.y;
         }
-        Destroy(patrolPointLeft); Destroy(patrolPointRight);
+         if (!keepVisualMarkers) {Destroy(patrolPointLeft); Destroy(patrolPointRight);}
 
         if (useVisualAgroRanges)
         {
             agroRange = Vector3.Distance(transform.position, agroRangeVisual.transform.position);
         }
-        Destroy(agroRangeVisual);
+        if (!keepVisualMarkers) {Destroy(agroRangeVisual);}
 
         if (useVisualAttackRanges)
         {
             attackRangeOuter = Vector3.Distance(transform.position, outerAttkRangeVisual.transform.position);
             attackRangeInner = Vector3.Distance(transform.position, innerAttkRangeVisual.transform.position);
         }
-        Destroy(outerAttkRangeVisual); Destroy(innerAttkRangeVisual);
+        if (!keepVisualMarkers) {Destroy(outerAttkRangeVisual); Destroy(innerAttkRangeVisual);}
 
         //Check if attack ranges make sense.
         if (attackRangeOuter > agroRange)
@@ -290,7 +308,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     
     private void Attack()
     {
-        if (noWeopon) {return;}
+        //if (noWeopon) {return;}
         if (chargeAttack)
         {
             timeTillShoot -= 1;
@@ -298,7 +316,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
         if (timeTillShoot <= 0)
         {
-
 
             if (burstRemaining > 0)
             {
@@ -368,7 +385,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         }
     }
     
-    private float GetDistance()
+    private float GetDistanceToPlayer()
     {
         if (player != null)
         {
@@ -386,16 +403,17 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     {
         if (IsInAttackRange())
         {
+            if (centerTarget) {CenterTarget();}
             rigBod.linearVelocityX = 0;
             return 0; //Attack
         }
-        else if (!CheckGrounded())
+        else if (!IsOnGround()) //Don't move if in the air
         {
             return -156;
         }
-        else if (GetDistance() > attackRangeOuter)
+        else if (chasePlayer)
         {
-            if (chasePlayer)
+            if (GetDistanceToPlayer() > attackRangeOuter)
             {
                 //Get closer to player
                 if (player.transform.position.x < transform.position.x)
@@ -414,23 +432,19 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
                 }
                 return 1;
             }
-            else
+            else //if (GetDistanceToPlayer() < attackRangeInner)
             {
-                return -911;
+                //Get farther to player
+                if (player.transform.position.x < transform.position.x)
+                {
+                    rigBod.linearVelocityX = agroMoveSpeed;
+                }
+                else
+                {
+                    rigBod.linearVelocityX = -agroMoveSpeed;
+                }
+                return -1;
             }
-        }
-        else if (GetDistance() < attackRangeInner)
-        {
-            //Get farther to player
-            if (player.transform.position.x < transform.position.x)
-            {
-                rigBod.linearVelocityX = agroMoveSpeed;
-            }
-            else
-            {
-                rigBod.linearVelocityX = -agroMoveSpeed;
-            }
-            return -1;
         }
         return -999;
     }
@@ -447,16 +461,28 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             Vector3 nextPoint = player.transform.position;
             Vector3 direction = nextPoint - transform.position;
             direction = direction.normalized;
-            if (GetDistance() > attackRangeOuter) {rigBod.linearVelocity = direction*patrolMoveSpeed;}
+            if (GetDistanceToPlayer() > attackRangeOuter) {rigBod.linearVelocity = direction*patrolMoveSpeed;}
             else {rigBod.linearVelocity = -direction*patrolMoveSpeed;}
               
             return -10;
         }
     }
 
+    private void CenterTarget()
+    {//TODO
+        if (flys)
+        {
+            
+        }
+        else
+        {
+            
+        }
+    }
+
     private bool IsInAttackRange()
     {
-        if ((GetDistance() < attackRangeOuter) && (GetDistance() > attackRangeInner))
+        if ((GetDistanceToPlayer() < attackRangeOuter) && (GetDistanceToPlayer() > attackRangeInner))
         {
             return true;
         }
@@ -488,7 +514,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     
     private void MoveToPatrolPoint()
     {
-        if (!CheckGrounded()) {return;}
+        if (!IsOnGround()) {return;}
 
         if (movingToRightPatrol)
         {
@@ -540,26 +566,24 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         }
     }
     
-    private bool CheckGrounded()
+    private bool IsOnGround()
     {
+        float hbSizeX = MainCollider.bounds.size.x;
+        float hbSizeY = MainCollider.bounds.size.y;
+
         Vector2 position = transform.position;
-        position.x -= (GetComponent<Renderer>().bounds.size.x)/2f;
-        Vector2 direction = Vector2.down;
-        float distance = 1f;
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundMask);
+        position.x -= hbSizeX/2f;
+        position.y -= (hbSizeY/2f + .1f);
+        RaycastHit2D hit = Physics2D.Raycast(position, Vector2.right, hbSizeX, groundMask);
         if (hit.collider != null) {
-            position.x += (GetComponent<Renderer>().bounds.size.x);
-            if (hit.collider != null)
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
         return false;
     }
 
     private bool IsWallAtPosition(string Direction)
     {
+        //return false;
         Vector3 sizeVect = GetComponent<Renderer>().bounds.size;
         float height = sizeVect.y;
         float width = sizeVect.x;
@@ -620,23 +644,30 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private void WeoponRotationControl()
     {
-        switch (bulletFireType)
+        if (GetDistanceToPlayer() < agroRange)
         {
-            case BulletFireTypes.Standered:
-                Vector3 playerPos = new Vector3(player.transform.position.x, player.transform.position.y, 0f);
-                Vector3 direction = playerPos - transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                angle = Mathf.Repeat(angle, 360);
-                angle -= transform.rotation.z;
-                gun.transform.eulerAngles = new Vector3(0, 0, angle+180);
-            break;
-        } 
+            switch (bulletFireType)
+            {
+                case BulletFireTypes.Standered:
+                    Vector3 playerPos = new Vector3(player.transform.position.x, player.transform.position.y, 0f);
+                    Vector3 direction = playerPos - transform.position;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+                    angle = Mathf.Repeat(angle, 360);
+                    angle -= transform.rotation.z;
+                    gun.transform.eulerAngles = new Vector3(0, 0, angle+180);
+                break;
+            }
+        }
+        else
+        {
+                gun.transform.eulerAngles = transform.eulerAngles;
+        }
     }
 
     private void AnimateSelf()
     {
         //return;
-        if ((GetDistance() < agroRange) || (!neverAgroed && hyperAgro))
+        if ((GetDistanceToPlayer() < agroRange) || (!neverAgroed && hyperAgro))
         {
             if (transform.position.x - player.transform.position.x > 0) // Look right
             {
@@ -670,12 +701,12 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     private void AutoConnections()
     {
         FindPlayer();
-
         rigBod = GetComponent<Rigidbody2D>();
-
-        MainCollider = GetComponent<Collider>();
-
+       
+        MainCollider = GetComponent<Collider2D>();
+       
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log(spriteRenderer);
     }
     
     private void FindPlayer()
@@ -696,9 +727,13 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
                 }
             }
         }
-        else
+        else if (len == 1)
         {
             player = players[0];
+        }
+        else
+        {
+            Debug.Log("No player found");
         }
     }
     

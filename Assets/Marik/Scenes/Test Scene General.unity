@@ -1567,11 +1567,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 81819886536792694, guid: 34e1228c3b8d3664385b74d8bae41398, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.28
+      value: 5.8
       objectReference: {fileID: 0}
     - target: {fileID: 81819886536792694, guid: 34e1228c3b8d3664385b74d8bae41398, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.83
+      value: 3.46
       objectReference: {fileID: 0}
     - target: {fileID: 81819886536792694, guid: 34e1228c3b8d3664385b74d8bae41398, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1661,6 +1661,10 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 906108848}
+    - target: {fileID: 6688806233798483218, guid: 34e1228c3b8d3664385b74d8bae41398, type: 3}
+      propertyPath: isSmart
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6688806233798483218, guid: 34e1228c3b8d3664385b74d8bae41398, type: 3}
       propertyPath: fireRate
       value: 96
