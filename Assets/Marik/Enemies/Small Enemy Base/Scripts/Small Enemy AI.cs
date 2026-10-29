@@ -11,6 +11,7 @@ using UnityEngine.U2D.IK;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting.FullSerializer;
 
 public class Small_Enemy_Basic_AI : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     ////////////////////////////////////////////////////////////
     [SerializeField] private LayerMask groundMask;
 
+
     [Header("Visual Range Connections")]
     [SerializeField] private GameObject patrolPointLeft;
     [SerializeField] private GameObject patrolPointRight;
@@ -37,20 +39,28 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private GameObject outerAttkRangeVisual;
     [SerializeField] private GameObject innerAttkRangeVisual;
 
+
     [Header("General Behavior")]
     [SerializeField] private bool hyperAgro; //If true, once agroed, won't de-agro
     //[SerializeField] bool canJump; //TODO
     [SerializeField] private bool isSmart; //If true, won't fall in pits
-    [SerializeField] private bool flys; 
-    [SerializeField] private bool activeAgroFlight; 
-    [SerializeField] private bool ignorAllCollision; //TODO 
+    [SerializeField] private bool ignorAllCollision; 
     //[SerializeField] private bool solidToPlayer; //TODO
     [SerializeField] private bool lockDamage; //Forces each hit to this enemy deal one damage
-    [SerializeField] private bool chasePlayer; //Can attack player but continues patrol
+    [SerializeField] private bool chasePlayer; //Still can attack player when turned off
+
+
+    [Header("General Flight Behavior")]
+    [SerializeField] private bool flys; 
+    [SerializeField] private bool hyperActiveAgroFlight; 
+    [SerializeField] private bool lockXPos; //When agroed, x posision can't change (Hypotheticaly speaking)
+    [SerializeField] private bool lockYPos; //When agroed, y posision can't change (Hypotheticaly speaking)
+
 
     [Header("General Stats")]
     [SerializeField] private float health;
     [SerializeField] private int invincibilityTime;
+
 
     [Header("Attack")] 
     [SerializeField] private float touchDamage;
@@ -62,6 +72,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private int fireRate; //Bigger the number, lower the fire rate
     [SerializeField] private float bulletSpread; //Maximum possible deviation from attempted target
 
+
     [Header("Projectile Behavior")]
     [SerializeField] private bool doNotPassUntoBullet;
     //[SerializeField] private bool specialRangedAttack; //When turned on, ... All below "Projectile Behavior" options will be ignored, a spetialized bullet prefab should be used
@@ -72,12 +83,14 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private float bulletHomingPower;
     [SerializeField] private BulletFireTypes bulletFireType; //TODO
 
+
     [Header("Projectile Collisions")]
     [SerializeField] private bool bulletsDestroyedByObstacles; 
     [SerializeField] private bool projectileFriendlyFire;
     [SerializeField] private bool projectileCollidesWithFriendly;
     [SerializeField] private bool projectileCollidesWithFriendlyBullets;
     [SerializeField] private bool projectileCollidesWithPlayerBullets;
+
 
     [Header("Projectile Explotion")]
     [SerializeField] private bool projectileExplodesOnDestruction; //TODO
@@ -95,6 +108,8 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private float attackRangeOuter;
     [SerializeField] private float attackRangeInner;
     [SerializeField] private bool centerTarget; //Attemtps to keep the player in the center of its attack range
+    [SerializeField] private float allowedErrorCenterTargeting; //How far player can be from center untill move starts
+
 
     [Header("Final Blast")] //TODO Everything
     [SerializeField] private bool finalBlast;
@@ -103,6 +118,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private float finalBlastSetoffRange;
     [SerializeField] private float finalBlastDamage;
     [SerializeField] private float finalBlastRadius;
+
 
     [Header("Patrol")]
     [SerializeField] private bool useVisualPatrolPoints;
@@ -114,35 +130,23 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private float patrolRangeLeftY;
     [SerializeField] private float patrolRangeRightY;
 
+
     [Header("Other")]
-    [SerializeField] private bool points;
+    [SerializeField] private int points;
+
 
     [Header("Sounds")]
+
+
+    [Header("Visuals")]
+    [SerializeField] private bool flipSpriteHorizontally;
+    [SerializeField] private bool flipSpriteVertically; //Assumes player is below enemy at default
 
     [Header("Debug")]
     [SerializeField] private bool keepVisualMarkers;
 
-    private void OnValidate()
-    {
-        health = Mathf.Max(0f, health);
-        invincibilityTime = Mathf.Max(0, invincibilityTime);
 
-        projectilesPerFire = Mathf.Max(0, projectilesPerFire);
-        projectilesPerBurst = Mathf.Max(0, projectilesPerBurst);
-        bulletLifeSpan = Mathf.Max(0f, bulletLifeSpan);
-        fireRate = Mathf.Max(0, fireRate);
-
-        finalBlastRadius = Mathf.Max(0f, finalBlastRadius);
-        finalBlastSetoffRange = Mathf.Max(0f, finalBlastSetoffRange);
-
-        agroRange = Mathf.Max(0f, agroRange);
-        attackRangeOuter = Mathf.Max(0f, attackRangeOuter);
-        attackRangeOuter = Mathf.Max(0f, attackRangeInner);
-
-        patrolRangeLeft = Mathf.Max(0f, patrolRangeLeft);
-        patrolRangeLeft = Mathf.Max(0f, patrolRangeRight);
-    }
-
+    //Setup
     private bool neverAgroed = true;
     private bool justAgroed = false;
     private Vector3 rightPatrolPoint;
@@ -399,12 +403,31 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     }
 
+    private void MoveTowardPlayer(float speed)
+    {
+        if (player.transform.position.x < transform.position.x)
+        {
+            if (IsGroundAtNextPositon("Left"))
+            {
+                rigBod.linearVelocityX = -speed;
+            }
+        }
+        else
+        {
+            if (IsGroundAtNextPositon("Right"))
+            {
+                rigBod.linearVelocityX = speed;
+            }
+        }
+    }
+    
     private int AgroMove()
     {
         if (IsInAttackRange())
         {
-            if (centerTarget) {CenterTarget();}
-            rigBod.linearVelocityX = 0;
+            if (centerTarget && chasePlayer) {CenterTarget();}
+            else{rigBod.linearVelocityX = 0;}
+
             return 0; //Attack
         }
         else if (!IsOnGround()) //Don't move if in the air
@@ -414,36 +437,14 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         else if (chasePlayer)
         {
             if (GetDistanceToPlayer() > attackRangeOuter)
-            {
-                //Get closer to player
-                if (player.transform.position.x < transform.position.x)
-                {
-                    if (IsGroundAtNextPositon("Left"))
-                    {
-                        rigBod.linearVelocityX = -agroMoveSpeed;
-                    }
-                }
-                else
-                {
-                    if (IsGroundAtNextPositon("Right"))
-                    {
-                        rigBod.linearVelocityX = agroMoveSpeed;
-                    }
-                }
+            {//Move toward player
+                MoveTowardPlayer(agroMoveSpeed);
                 return 1;
             }
-            else //if (GetDistanceToPlayer() < attackRangeInner)
-            {
-                //Get farther to player
-                if (player.transform.position.x < transform.position.x)
-                {
-                    rigBod.linearVelocityX = agroMoveSpeed;
-                }
-                else
-                {
-                    rigBod.linearVelocityX = -agroMoveSpeed;
-                }
-                return -1;
+            else
+            {//Get farther to player
+                MoveTowardPlayer(-agroMoveSpeed);
+                return 1;
             }
         }
         return -999;
@@ -453,7 +454,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     {
         if (IsInAttackRange())
         {
-            if (!activeAgroFlight) {rigBod.linearVelocity = new Vector3(0,0,0);}
+            if (!hyperActiveAgroFlight) {rigBod.linearVelocity = new Vector3(0,0,0);}
             return 0; //Attack
         }
         else
@@ -463,20 +464,39 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             direction = direction.normalized;
             if (GetDistanceToPlayer() > attackRangeOuter) {rigBod.linearVelocity = direction*patrolMoveSpeed;}
             else {rigBod.linearVelocity = -direction*patrolMoveSpeed;}
+
+            if (lockXPos) {rigBod.linearVelocityX = 0;}
+            if (lockYPos) {rigBod.linearVelocityY = 0;}
+
               
             return -10;
         }
     }
 
     private void CenterTarget()
-    {//TODO
-        if (flys)
+    {//TODO something aint working:(
+        float distance = GetDistanceToPlayer();
+        if (math.abs(middleRangeDistance - distance) > allowedErrorCenterTargeting)
         {
-            
+            if (flys)
+            {
+                
+            }
+            else
+            {//So not flying
+                if (GetDistanceToPlayer() > middleRangeDistance)
+                {//Move toward player
+                    MoveTowardPlayer(agroMoveSpeed);
+                }
+                else
+                {//Get farther to player 
+                    MoveTowardPlayer(-agroMoveSpeed);
+                }
+            }
         }
         else
         {
-            
+            rigBod.linearVelocityX = 0;
         }
     }
 
@@ -613,11 +633,9 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private bool IsGroundAtNextPositon(string Direction)
     {
-        if (!isSmart)
-        {
-            return true;
-        }
-        Vector3 sizeVect = GetComponent<Renderer>().bounds.size;
+        if (!isSmart) { return true;}
+        
+        Vector3 sizeVect = MainCollider.bounds.size;
         float height = sizeVect.y + 1;
         float width = (sizeVect.x / 2.0f) + .1f;
         Vector2 position;
@@ -666,36 +684,77 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private void AnimateSelf()
     {
-        //return;
-        if ((GetDistanceToPlayer() < agroRange) || (!neverAgroed && hyperAgro))
+        if (flipSpriteHorizontally)
         {
-            if (transform.position.x - player.transform.position.x > 0) // Look right
+            if ((GetDistanceToPlayer() < agroRange) || (!neverAgroed && hyperAgro))
             {
-                spriteRenderer.flipX = true;
+                if (transform.position.x - player.transform.position.x > 0) // Look right
+                {
+                    spriteRenderer.flipX = true;
+                }
+                else
+                {
+                    spriteRenderer.flipX = false;
+                }
             }
             else
             {
-                spriteRenderer.flipX = false;
+                if (movingToRightPatrol)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else
+                {
+                    spriteRenderer.flipX = true;
+                }
+                
             }
         }
-        else
+
+        if (flipSpriteVertically)
         {
-            if (movingToRightPatrol)
+            if ((GetDistanceToPlayer() < agroRange) || (!neverAgroed && hyperAgro))
             {
-                spriteRenderer.flipX = false;
+                if (player.transform.position.y > transform.position.y)
+                {
+                    spriteRenderer.flipY = true;
+                }
+                else
+                {
+                    spriteRenderer.flipY = false;
+                }
             }
             else
             {
-                spriteRenderer.flipX = true;
+                if (movingToRightPatrol)
+                {
+                    if (rightPatrolPoint.y > transform.position.y)
+                    {
+                        spriteRenderer.flipY = true;
+                    }
+                    else
+                    {
+                        spriteRenderer.flipY = false;
+                    }
+                }
+                else
+                {
+                    if (rightPatrolPoint.y > transform.position.y)
+                    {
+                        spriteRenderer.flipY = true;
+                    }
+                    else
+                    {
+                        spriteRenderer.flipY = false;
+                    }
+                }
             }
-            
         }
 
         if (timeToVincibility > 0)
         {
             
         }
-        
     }
 
     private void AutoConnections()

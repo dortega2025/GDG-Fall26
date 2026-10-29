@@ -585,11 +585,13 @@ MonoBehaviour:
   innerAttkRangeVisual: {fileID: 7159100240520744391}
   hyperAgro: 0
   isSmart: 1
-  flys: 0
-  activeAgroFlight: 0
   ignorAllCollision: 0
   lockDamage: 0
   chasePlayer: 1
+  flys: 0
+  hyperActiveAgroFlight: 0
+  lockXPos: 0
+  lockYPos: 0
   health: 5
   invincibilityTime: 0
   touchDamage: 0
@@ -623,6 +625,8 @@ MonoBehaviour:
   useVisualAttackRanges: 0
   attackRangeOuter: 0
   attackRangeInner: 0
+  centerTarget: 0
+  allowedErrorCenterTargeting: 0
   finalBlast: 0
   finalBlastDamageFallsOff: 0
   finalBlastForce: 0
@@ -637,6 +641,10 @@ MonoBehaviour:
   patrolRangeRight: 0
   patrolRangeLeftY: 0
   patrolRangeRightY: 0
+  points: 0
+  flipSpriteHorizontally: 1
+  flipSpriteVertically: 0
+  keepVisualMarkers: 0
 --- !u!50 &516800640744068982
 Rigidbody2D:
   serializedVersion: 5
