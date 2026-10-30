@@ -45,7 +45,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     //[SerializeField] bool canJump; //TODO
     [SerializeField] private bool isSmart; //If true, won't fall in pits
     [SerializeField] private bool ignorAllCollision; 
-    //[SerializeField] private bool solidToPlayer; //TODO
     [SerializeField] private bool lockDamage; //Forces each hit to this enemy deal one damage
     [SerializeField] private bool chasePlayer; //Still can attack player when turned off
 
@@ -59,6 +58,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     [Header("General Stats")]
     [SerializeField] private float health;
+    [SerializeField] private float defence;
     [SerializeField] private int invincibilityTime;
 
 
@@ -260,7 +260,19 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             player.GetComponent<Rigidbody2D>().AddForce(direction.normalized * finalBlastForce, ForceMode2D.Impulse);
         }
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string tag = collision.gameObject.tag;
+
+        if (tag == "Player")
+        {
+            GameObject healthLogic = GameObject.Find("HealthLogic");
+            Health health = healthLogic.GetComponent<Health>();
+            health.TakeDamage(touchDamage);
+        }
+    }
+
     private void CheckForVisualRanges()
     {
         if (useVisualPatrolPoints)
@@ -361,7 +373,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         BasicEnemyBullet script = newBullet.GetComponent<BasicEnemyBullet>();
 
         newBullet.GetComponent<Rigidbody2D>().AddForce(directionToPlayer * bulletVelocity, ForceMode2D.Impulse);
-        Debug.Log(directionToPlayer);
         if (!doNotPassUntoBullet) //In case the bullet is doing its own special stuff
         {//Sets bullet variables
             script.player = player;
@@ -513,8 +524,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     
     private void FlyToPatrolPoint()
     {
-        Debug.Log(transform.position);
-
         Vector3 nextPoint;
         if (movingToRightPatrol) {nextPoint = rightPatrolPoint;}
         else {nextPoint = leftPatrolPoint;}
@@ -523,7 +532,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         {
             if (movingToRightPatrol) {movingToRightPatrol = false;}
             else {movingToRightPatrol = true;}
-            Debug.Log(nextPoint);
             return;
         }
 
@@ -622,7 +630,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(position, direction, height - .02f, groundMask);
         if (hit.collider != null)
         {
-            Debug.Log("Is wall");
             return true;  
         }
         else
@@ -765,7 +772,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         MainCollider = GetComponent<Collider2D>();
        
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log(spriteRenderer);
     }
     
     private void FindPlayer()
@@ -813,7 +819,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         }
         else
         {
-            health -= DMG;
+            health -= DMG/defence;
         }
 
         if (health <= 0)

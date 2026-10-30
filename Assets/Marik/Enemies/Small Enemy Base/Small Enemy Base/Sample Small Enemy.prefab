@@ -593,6 +593,7 @@ MonoBehaviour:
   lockXPos: 0
   lockYPos: 0
   health: 5
+  defence: 1
   invincibilityTime: 0
   touchDamage: 0
   bulletDamage: 1
@@ -633,7 +634,7 @@ MonoBehaviour:
   finalBlastSetoffRange: 0
   finalBlastDamage: 0
   finalBlastRadius: 0
-  useVisualPatrolPoints: 0
+  useVisualPatrolPoints: 1
   beginPatrolRight: 1
   resetPatrolRangeWhenDeAgroed: 0
   patrolMoveSpeed: 1

@@ -29,6 +29,9 @@ public class BasicEnemyBullet : MonoBehaviour
     public bool collidesWithFriendlyBullets;
     public bool collidesWithPlayerBullets;
 
+    private GameObject healthLogic;
+    private Health health;
+
     private Vector2 ogVelocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +40,9 @@ public class BasicEnemyBullet : MonoBehaviour
         ogVelocity = rigBod.linearVelocity;
 
         rigBod.gravityScale = gravitationalEffect;
+
+        healthLogic = GameObject.Find("HealthLogic");
+        health = healthLogic.GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -78,11 +84,10 @@ public class BasicEnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         switch (collision.gameObject.tag)
         {
             case "Player":
-                //collision.gameObject.GetComponent<Player>().TakeDamage(damage); //TODO Needs how player takes damage
+                health.TakeDamage(damage);
                 Destroy(gameObject);
             break;
 

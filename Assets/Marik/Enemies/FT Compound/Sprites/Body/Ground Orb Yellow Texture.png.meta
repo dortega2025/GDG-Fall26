@@ -1,0 +1,2303 @@
+fileFormatVersion: 2
+guid: ea71a2798e1cff8788e321e350ecbf14
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5661240680837155044
+    second: Ground Orb Sprite(1)_0
+  - first:
+      213: -5383399563845777422
+    second: Ground Orb Sprite(1)_1
+  - first:
+      213: 4778658868571467480
+    second: Ground Orb Sprite(1)_2
+  - first:
+      213: 4484292365045011413
+    second: Ground Orb Sprite(1)_3
+  - first:
+      213: -3151996024730513922
+    second: Ground Orb Sprite(1)_4
+  - first:
+      213: -8383903484345670465
+    second: Ground Orb Sprite(1)_5
+  - first:
+      213: -6626183078917197268
+    second: Ground Orb Sprite(1)_6
+  - first:
+      213: -533457093410360392
+    second: Ground Orb Sprite(1)_7
+  - first:
+      213: 8438118404422897496
+    second: Ground Orb Sprite(1)_8
+  - first:
+      213: -8911460693530313966
+    second: Ground Orb Sprite(1)_9
+  - first:
+      213: -7646545888442328528
+    second: Ground Orb Sprite(1)_10
+  - first:
+      213: 5482056392900546318
+    second: Ground Orb Sprite(1)_11
+  - first:
+      213: 8297874740332457692
+    second: Ground Orb Sprite(1)_12
+  - first:
+      213: 7781101760771758141
+    second: Ground Orb Sprite(1)_13
+  - first:
+      213: 4893252653079258879
+    second: Ground Orb Sprite(1)_14
+  - first:
+      213: -4555388034896960602
+    second: Ground Orb Sprite(1)_15
+  - first:
+      213: -61934901660112534
+    second: Ground Orb Sprite(1)_16
+  - first:
+      213: -4222359576371291203
+    second: Ground Orb Sprite(1)_17
+  - first:
+      213: -7853917159772812309
+    second: Ground Orb Sprite(1)_18
+  - first:
+      213: 3602664300011002594
+    second: Ground Orb Sprite(1)_19
+  - first:
+      213: -1535900064421878452
+    second: Ground Orb Sprite(1)_20
+  - first:
+      213: 8560176384419342358
+    second: Ground Orb Sprite(1)_21
+  - first:
+      213: -354831238547013450
+    second: Ground Orb Sprite(1)_22
+  - first:
+      213: 1144940285873361066
+    second: Ground Orb Sprite(1)_23
+  - first:
+      213: 4482957012532525771
+    second: Ground Orb Sprite(1)_24
+  - first:
+      213: -7500962958367816349
+    second: Ground Orb Sprite(1)_25
+  - first:
+      213: 999325335577210638
+    second: Ground Orb Sprite(1)_26
+  - first:
+      213: 8225261301308955231
+    second: Ground Orb Sprite(1)_27
+  - first:
+      213: 9135348867295810374
+    second: Ground Orb Sprite(1)_28
+  - first:
+      213: 8481871924225174094
+    second: Ground Orb Sprite(1)_29
+  - first:
+      213: 3120732769196465733
+    second: Ground Orb Sprite(1)_30
+  - first:
+      213: 336103926674745681
+    second: Ground Orb Sprite(1)_31
+  - first:
+      213: 4502355826661121382
+    second: Ground Orb Sprite(1)_32
+  - first:
+      213: -8059673800985795123
+    second: Ground Orb Sprite(1)_33
+  - first:
+      213: 1060518802076655321
+    second: Ground Orb Sprite(1)_34
+  - first:
+      213: 4723509081924894508
+    second: Ground Orb Sprite(1)_35
+  - first:
+      213: -3220525081710538495
+    second: Ground Orb Sprite(1)_36
+  - first:
+      213: 3132961470469871940
+    second: Ground Orb Sprite(1)_37
+  - first:
+      213: 5829223833447586805
+    second: Ground Orb Sprite(1)_38
+  - first:
+      213: -800445745136798308
+    second: Ground Orb Sprite(1)_39
+  - first:
+      213: -604491740856251691
+    second: Ground Orb Sprite(1)_40
+  - first:
+      213: 398530381946554397
+    second: Ground Orb Sprite(1)_41
+  - first:
+      213: -7532134865362369625
+    second: Ground Orb Sprite(1)_42
+  - first:
+      213: -8928503204733795453
+    second: Ground Orb Sprite(1)_43
+  - first:
+      213: 471396787912769345
+    second: Ground Orb Sprite(1)_44
+  - first:
+      213: 4999001200243591474
+    second: Ground Orb Sprite(1)_45
+  - first:
+      213: -402443844478420571
+    second: Ground Orb Sprite(1)_46
+  - first:
+      213: 3960627775354577014
+    second: Ground Orb Sprite(1)_47
+  - first:
+      213: -8065224353294027220
+    second: Ground Orb Sprite(1)_48
+  - first:
+      213: -4107473810827366830
+    second: Ground Orb Sprite(1)_49
+  - first:
+      213: -1368784570134335025
+    second: Ground Orb Sprite(1)_50
+  - first:
+      213: -3557919185159231896
+    second: Ground Orb Sprite(1)_51
+  - first:
+      213: -3790011345471689736
+    second: Ground Orb Sprite(1)_52
+  - first:
+      213: -5797540928260663347
+    second: Ground Orb Sprite(1)_53
+  - first:
+      213: -867238007991950906
+    second: Ground Orb Sprite(1)_54
+  - first:
+      213: 2823485657153394699
+    second: Ground Orb Sprite(1)_55
+  - first:
+      213: -1321440391121666356
+    second: Ground Orb Sprite(1)_56
+  - first:
+      213: 4912898162731647813
+    second: Ground Orb Sprite(1)_57
+  - first:
+      213: 5921321192602503816
+    second: Ground Orb Sprite(1)_58
+  - first:
+      213: -4678889290596650913
+    second: Ground Orb Sprite(1)_59
+  - first:
+      213: -5472169402781104621
+    second: Ground Orb Sprite(1)_60
+  - first:
+      213: 6423585528421640373
+    second: Ground Orb Sprite(1)_61
+  - first:
+      213: 7533770095058359709
+    second: Ground Orb Sprite(1)_62
+  - first:
+      213: -5259983838420310990
+    second: Ground Orb Sprite(1)_63
+  - first:
+      213: -8889352589734583583
+    second: Ground Orb Sprite(1)_64
+  - first:
+      213: -4098073452640502231
+    second: Ground Orb Sprite(1)_65
+  - first:
+      213: -5877685042695445941
+    second: Ground Orb Sprite(1)_66
+  - first:
+      213: 9140489101726115283
+    second: Ground Orb Sprite(1)_67
+  - first:
+      213: 160461582032556397
+    second: Ground Orb Sprite(1)_68
+  - first:
+      213: -6402537329565453580
+    second: Ground Orb Sprite(1)_69
+  - first:
+      213: -8963879555042067166
+    second: Ground Orb Sprite(1)_70
+  - first:
+      213: 4430743643178012803
+    second: Ground Orb Sprite(1)_71
+  - first:
+      213: -5063001688262988108
+    second: Ground Orb Sprite(1)_72
+  - first:
+      213: 2520119704752032643
+    second: Ground Orb Sprite(1)_73
+  - first:
+      213: -4500620855173257747
+    second: Ground Orb Sprite(1)_74
+  - first:
+      213: 7279558979982739196
+    second: Ground Orb Sprite(1)_75
+  - first:
+      213: 3549607422808023661
+    second: Ground Orb Sprite(1)_76
+  - first:
+      213: -289930630627308069
+    second: Ground Orb Sprite(1)_77
+  - first:
+      213: -6042519817755118647
+    second: Ground Orb Sprite(1)_78
+  - first:
+      213: -6763151891786785984
+    second: Ground Orb Sprite(1)_79
+  - first:
+      213: 5021708882377359705
+    second: Ground Orb Sprite(1)_80
+  - first:
+      213: -4416787822921694558
+    second: Ground Orb Sprite(1)_81
+  - first:
+      213: -2564430619032212817
+    second: Ground Orb Sprite(1)_82
+  - first:
+      213: -3777128732733614268
+    second: Ground Orb Sprite(1)_83
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e80a499764c09e40800000000000000
+      internalID: 5661240680837155044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_1
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 416
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f7caf08e925a45b0800000000000000
+      internalID: -5383399563845777422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_2
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 417
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dee8fb2ce4315240800000000000000
+      internalID: 4778658868571467480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_3
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 417
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3118fa5286b3e30800000000000000
+      internalID: 4484292365045011413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_4
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 415
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efd8e74c05cd144d0800000000000000
+      internalID: -3151996024730513922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_5
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 412
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb4aa68633466ab80800000000000000
+      internalID: -8383903484345670465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_6
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 403
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c22bf64c8911b04a0800000000000000
+      internalID: -6626183078917197268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_7
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 409
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b3fc549997c898f0800000000000000
+      internalID: -533457093410360392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_8
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 407
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f00545bf73a1570800000000000000
+      internalID: 8438118404422897496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 401
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21bf444d6b1245480800000000000000
+      internalID: -8911460693530313966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_10
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 388
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03adba0170302e590800000000000000
+      internalID: -7646545888442328528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_11
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 396
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0f0f718e3d241c40800000000000000
+      internalID: 5482056392900546318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_12
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 394
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdee330cc19f72370800000000000000
+      internalID: 8297874740332457692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_13
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 378
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3897fb43d60cfb60800000000000000
+      internalID: 7781101760771758141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 378
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff6e607cc5358e340800000000000000
+      internalID: 4893252653079258879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_15
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 385
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a3e6edb7b208c0c0800000000000000
+      internalID: -4555388034896960602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_16
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 370
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a69a95bf886f32ff0800000000000000
+      internalID: -61934901660112534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_17
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 374
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbb9b68165a2765c0800000000000000
+      internalID: -4222359576371291203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_18
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 377
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beb856c74f7410390800000000000000
+      internalID: -7853917159772812309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_19
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 376
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea1327d71c3ff130800000000000000
+      internalID: 3602664300011002594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_20
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 373
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4562a967036faae0800000000000000
+      internalID: -1535900064421878452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_21
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 375
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 618a000611bdbc670800000000000000
+      internalID: 8560176384419342358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_22
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 368
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b081375ed2631bf0800000000000000
+      internalID: -354831238547013450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_23
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 363
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa01484bf15a3ef00800000000000000
+      internalID: 1144940285873361066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_24
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 367
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcaf853b6a9a63e30800000000000000
+      internalID: 4482957012532525771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_25
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 360
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3658f116ee937e790800000000000000
+      internalID: -7500962958367816349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_26
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 364
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0fa02a19115edd00800000000000000
+      internalID: 999325335577210638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_27
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 356
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5a9941039ff52270800000000000000
+      internalID: 8225261301308955231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_28
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 354
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6431f66c46747ce70800000000000000
+      internalID: 9135348867295810374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_29
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 350
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4aecc18399a5b570800000000000000
+      internalID: 8481871924225174094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_30
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 352
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e50e25be11f4b20800000000000000
+      internalID: 3120732769196465733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_31
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 343
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 159ef059db41aa400800000000000000
+      internalID: 336103926674745681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_32
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 344
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66ddb8415c49b7e30800000000000000
+      internalID: 4502355826661121382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_33
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 340
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc528b64169462090800000000000000
+      internalID: -8059673800985795123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_34
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 339
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ded66b4b38b7be00800000000000000
+      internalID: 1060518802076655321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_35
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 330
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2ff679db764d8140800000000000000
+      internalID: 4723509081924894508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_36
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 333
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 101586250856e43d0800000000000000
+      internalID: -3220525081710538495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_37
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 328
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4499756bbd38a7b20800000000000000
+      internalID: 3132961470469871940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_38
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 326
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb52e4213095e050800000000000000
+      internalID: 5829223833447586805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_39
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 316
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c95f523f5de34e4f0800000000000000
+      internalID: -800445745136798308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_40
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 320
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da0b94e6f96c97f0800000000000000
+      internalID: -604491740856251691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_41
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 180
+        width: 152
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d180028554dd78500800000000000000
+      internalID: 398530381946554397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_42
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 314
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a3cdb53f3b787790800000000000000
+      internalID: -7532134865362369625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_43
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 307
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383c7e9f3a5971480800000000000000
+      internalID: -8928503204733795453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_44
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 311
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14ffccb81ecba8600800000000000000
+      internalID: 471396787912769345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_45
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 301
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23945441b15006540800000000000000
+      internalID: 4999001200243591474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_46
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 300
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a932d7a47b3a6af0800000000000000
+      internalID: -402443844478420571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_47
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 296
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6702e853af9f6f630800000000000000
+      internalID: 3960627775354577014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_48
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 285
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c26741c9e21921090800000000000000
+      internalID: -8065224353294027220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_49
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 292
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25e2a65d4525ff6c0800000000000000
+      internalID: -4107473810827366830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_50
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 285
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc17b138fa9110de0800000000000000
+      internalID: -1368784570134335025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_51
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 277
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866690d0a5bbf9ec0800000000000000
+      internalID: -3557919185159231896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_52
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 281
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fba57af2cc276bc0800000000000000
+      internalID: -3790011345471689736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_53
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 270
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc71c301e3ffa8fa0800000000000000
+      internalID: -5797540928260663347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_54
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 270
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c12ce560a3f6f3f0800000000000000
+      internalID: -867238007991950906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_55
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 265
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b08d907ee390f2720800000000000000
+      internalID: 2823485657153394699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_56
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 254
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccef65f27fc49ade0800000000000000
+      internalID: -1321440391121666356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_57
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 261
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5430a4f69de1e2440800000000000000
+      internalID: 4912898162731647813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_58
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 250
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a801e8042cc2250800000000000000
+      internalID: 5921321192602503816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_59
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 245
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f507b92eafe311fb0800000000000000
+      internalID: -4678889290596650913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_60
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 249
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3168874cbe2fe04b0800000000000000
+      internalID: -5472169402781104621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_61
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 241
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b869e52109252950800000000000000
+      internalID: 6423585528421640373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_62
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 234
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d951a6f5cf35d8860800000000000000
+      internalID: 7533770095058359709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_63
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 225
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23469aa4198c007b0800000000000000
+      internalID: -5259983838420310990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_64
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 229
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e2ebaddaeca2a480800000000000000
+      internalID: -8889352589734583583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_65
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 233
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92e77e748e7b027c0800000000000000
+      internalID: -4098073452640502231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_66
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 213
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b42e28058944e6ea0800000000000000
+      internalID: -5877685042695445941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_67
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 218
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d5e6bdd86a89de70800000000000000
+      internalID: 9140489101726115283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_68
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 217
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d61d52d65f21a3200800000000000000
+      internalID: 160461582032556397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_69
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 209
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f2b21a883e9527a0800000000000000
+      internalID: -6402537329565453580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_70
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 203
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22db4509907e99380800000000000000
+      internalID: -8963879555042067166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_71
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 202
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 380127e4ed92d7d30800000000000000
+      internalID: 4430743643178012803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_72
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 194
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bea1e91aca9cb9b0800000000000000
+      internalID: -5063001688262988108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_73
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 198
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38b0531f48349f220800000000000000
+      internalID: 2520119704752032643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_74
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 179
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de5eea27d259a81c0800000000000000
+      internalID: -4500620855173257747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_75
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 184
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf64063d250360560800000000000000
+      internalID: 7279558979982739196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_76
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 188
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d62ef88f42db24130800000000000000
+      internalID: 3549607422808023661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_77
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 187
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdd44f7a0a5f9fbf0800000000000000
+      internalID: -289930630627308069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_78
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 171
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c3b27a8d38a42ca0800000000000000
+      internalID: -6042519817755118647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_79
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 175
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b9908ef257422a0800000000000000
+      internalID: -6763151891786785984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_80
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 172
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 951c6835f91b0b540800000000000000
+      internalID: 5021708882377359705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_81
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a24b7e40ea64b2c0800000000000000
+      internalID: -4416787822921694558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_82
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 165
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faa237d50ff496cd0800000000000000
+      internalID: -2564430619032212817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Orb Sprite(1)_83
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 163
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 447dd7efd61f49bc0800000000000000
+      internalID: -3777128732733614268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 004c65108480604318e357d5aca81f4d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Ground Orb Sprite(1)_0: 5661240680837155044
+      Ground Orb Sprite(1)_1: -5383399563845777422
+      Ground Orb Sprite(1)_10: -7646545888442328528
+      Ground Orb Sprite(1)_11: 5482056392900546318
+      Ground Orb Sprite(1)_12: 8297874740332457692
+      Ground Orb Sprite(1)_13: 7781101760771758141
+      Ground Orb Sprite(1)_14: 4893252653079258879
+      Ground Orb Sprite(1)_15: -4555388034896960602
+      Ground Orb Sprite(1)_16: -61934901660112534
+      Ground Orb Sprite(1)_17: -4222359576371291203
+      Ground Orb Sprite(1)_18: -7853917159772812309
+      Ground Orb Sprite(1)_19: 3602664300011002594
+      Ground Orb Sprite(1)_2: 4778658868571467480
+      Ground Orb Sprite(1)_20: -1535900064421878452
+      Ground Orb Sprite(1)_21: 8560176384419342358
+      Ground Orb Sprite(1)_22: -354831238547013450
+      Ground Orb Sprite(1)_23: 1144940285873361066
+      Ground Orb Sprite(1)_24: 4482957012532525771
+      Ground Orb Sprite(1)_25: -7500962958367816349
+      Ground Orb Sprite(1)_26: 999325335577210638
+      Ground Orb Sprite(1)_27: 8225261301308955231
+      Ground Orb Sprite(1)_28: 9135348867295810374
+      Ground Orb Sprite(1)_29: 8481871924225174094
+      Ground Orb Sprite(1)_3: 4484292365045011413
+      Ground Orb Sprite(1)_30: 3120732769196465733
+      Ground Orb Sprite(1)_31: 336103926674745681
+      Ground Orb Sprite(1)_32: 4502355826661121382
+      Ground Orb Sprite(1)_33: -8059673800985795123
+      Ground Orb Sprite(1)_34: 1060518802076655321
+      Ground Orb Sprite(1)_35: 4723509081924894508
+      Ground Orb Sprite(1)_36: -3220525081710538495
+      Ground Orb Sprite(1)_37: 3132961470469871940
+      Ground Orb Sprite(1)_38: 5829223833447586805
+      Ground Orb Sprite(1)_39: -800445745136798308
+      Ground Orb Sprite(1)_4: -3151996024730513922
+      Ground Orb Sprite(1)_40: -604491740856251691
+      Ground Orb Sprite(1)_41: 398530381946554397
+      Ground Orb Sprite(1)_42: -7532134865362369625
+      Ground Orb Sprite(1)_43: -8928503204733795453
+      Ground Orb Sprite(1)_44: 471396787912769345
+      Ground Orb Sprite(1)_45: 4999001200243591474
+      Ground Orb Sprite(1)_46: -402443844478420571
+      Ground Orb Sprite(1)_47: 3960627775354577014
+      Ground Orb Sprite(1)_48: -8065224353294027220
+      Ground Orb Sprite(1)_49: -4107473810827366830
+      Ground Orb Sprite(1)_5: -8383903484345670465
+      Ground Orb Sprite(1)_50: -1368784570134335025
+      Ground Orb Sprite(1)_51: -3557919185159231896
+      Ground Orb Sprite(1)_52: -3790011345471689736
+      Ground Orb Sprite(1)_53: -5797540928260663347
+      Ground Orb Sprite(1)_54: -867238007991950906
+      Ground Orb Sprite(1)_55: 2823485657153394699
+      Ground Orb Sprite(1)_56: -1321440391121666356
+      Ground Orb Sprite(1)_57: 4912898162731647813
+      Ground Orb Sprite(1)_58: 5921321192602503816
+      Ground Orb Sprite(1)_59: -4678889290596650913
+      Ground Orb Sprite(1)_6: -6626183078917197268
+      Ground Orb Sprite(1)_60: -5472169402781104621
+      Ground Orb Sprite(1)_61: 6423585528421640373
+      Ground Orb Sprite(1)_62: 7533770095058359709
+      Ground Orb Sprite(1)_63: -5259983838420310990
+      Ground Orb Sprite(1)_64: -8889352589734583583
+      Ground Orb Sprite(1)_65: -4098073452640502231
+      Ground Orb Sprite(1)_66: -5877685042695445941
+      Ground Orb Sprite(1)_67: 9140489101726115283
+      Ground Orb Sprite(1)_68: 160461582032556397
+      Ground Orb Sprite(1)_69: -6402537329565453580
+      Ground Orb Sprite(1)_7: -533457093410360392
+      Ground Orb Sprite(1)_70: -8963879555042067166
+      Ground Orb Sprite(1)_71: 4430743643178012803
+      Ground Orb Sprite(1)_72: -5063001688262988108
+      Ground Orb Sprite(1)_73: 2520119704752032643
+      Ground Orb Sprite(1)_74: -4500620855173257747
+      Ground Orb Sprite(1)_75: 7279558979982739196
+      Ground Orb Sprite(1)_76: 3549607422808023661
+      Ground Orb Sprite(1)_77: -289930630627308069
+      Ground Orb Sprite(1)_78: -6042519817755118647
+      Ground Orb Sprite(1)_79: -6763151891786785984
+      Ground Orb Sprite(1)_8: 8438118404422897496
+      Ground Orb Sprite(1)_80: 5021708882377359705
+      Ground Orb Sprite(1)_81: -4416787822921694558
+      Ground Orb Sprite(1)_82: -2564430619032212817
+      Ground Orb Sprite(1)_83: -3777128732733614268
+      Ground Orb Sprite(1)_9: -8911460693530313966
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
