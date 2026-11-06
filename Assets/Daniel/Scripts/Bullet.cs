@@ -4,45 +4,32 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float time;
+    [SerializeField] private float time = 0;
     [SerializeReference] private Rigidbody2D rb;
     [SerializeReference] private Collider2D collider;
+    [SerializeField] private GameObject health;
+    public float damage = 5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<CapsuleCollider2D>();
+        health = GameObject.Find("HealthLogic");
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+
     // Update is called once per frame
     void Update()
     {
-        
-        if (time <= 0)
+        time += Time.deltaTime;
+        if (time > 5f)
         {
             Destroy(gameObject);
         }
-        else
-        {
-            time -= 1 * Time.deltaTime;
-        }
     }
 
-    public void Move(Vector2 direction,float Speed)
-    {
-        rb.AddForce(direction.normalized * (1f * Speed), ForceMode2D.Impulse);
-    }
     void OnTriggerEnter2D(Collider2D collision)
     {
+        //health.GetComponent<Health>().TakeDamage(5);
         Destroy(gameObject);
     }
 }

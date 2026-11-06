@@ -6,10 +6,12 @@ public class Laser : MonoBehaviour
     [SerializeField] float scaleSpeed = 15f;
     private bool otherSpawn = false;
     private GameObject[] lasers;
+    [SerializeField] private GameObject health;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        health = GameObject.Find("HealthLogic");
     }
 
     // Update is called once per frame
@@ -33,5 +35,9 @@ public class Laser : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
+    }
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        health.GetComponent<Health>().TakeDamage(0.5f);
     }
 }
