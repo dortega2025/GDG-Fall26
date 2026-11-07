@@ -267,11 +267,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 100
-  currentHealth: 0
-  knockbackForce: 0
-  knockbackDuration: 0.2
-  IFrames: 0.5
+  health: {fileID: 0}
 --- !u!50 &5090774293541179144
 Rigidbody2D:
   serializedVersion: 5
@@ -326,7 +322,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4331245335169140423}
+      - m_Target: {fileID: 11500000, guid: 13496bdad1a234da6bf375fb708e1797, type: 3}
         m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
