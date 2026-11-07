@@ -470,6 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 81819886536792694}
   - component: {fileID: 8874775299566574264}
+  - component: {fileID: 1470614502734040866}
   - component: {fileID: 6688806233798483218}
   - component: {fileID: 516800640744068982}
   - component: {fileID: 1505566825114915855}
@@ -560,6 +561,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &1470614502734040866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970041180610080069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ec44524ef73f7f8a2cfda959ddff6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemyTakeDamage
+  myHealth: 1
+  defence: 1
+  instantiateOnDestroy: 0
+  prefab: {fileID: 0}
 --- !u!114 &6688806233798483218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +601,7 @@ MonoBehaviour:
   outerAttkRangeVisual: {fileID: 384908651279602273}
   innerAttkRangeVisual: {fileID: 7159100240520744391}
   hyperAgro: 0
+  extremeAgro: 0
   isSmart: 1
   ignorAllCollision: 0
   lockDamage: 0

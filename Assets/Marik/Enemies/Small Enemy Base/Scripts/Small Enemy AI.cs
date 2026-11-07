@@ -42,6 +42,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     [Header("General Behavior")]
     [SerializeField] private bool hyperAgro; //If true, once agroed, won't de-agro
+    [SerializeField] private bool extremeAgro; //If true, will constantly try to make contact with the player
     //[SerializeField] bool canJump; //TODO
     [SerializeField] private bool isSmart; //If true, won't fall in pits
     [SerializeField] private bool ignorAllCollision; 
@@ -55,11 +56,12 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private bool lockXPos; //When agroed, x posision can't change (Hypotheticaly speaking)
     [SerializeField] private bool lockYPos; //When agroed, y posision can't change (Hypotheticaly speaking)
 
-
+    /*
     [Header("General Stats")]
     [SerializeField] private float health;
     [SerializeField] private float defence;
     [SerializeField] private int invincibilityTime;
+    */
 
 
     [Header("Attack")] 
@@ -185,6 +187,12 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         {
             noWeopon = true;
             Debug.Log("No weapon equipped!!!");
+        }
+
+        enemyTakeDamage ETDScript = GetComponent<enemyTakeDamage>();
+        if (ETDScript == null)
+        {
+            Debug.Log("Warning! No take damage script detected!!!");
         }
 
     }
@@ -373,6 +381,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         BasicEnemyBullet script = newBullet.GetComponent<BasicEnemyBullet>();
 
         newBullet.GetComponent<Rigidbody2D>().AddForce(directionToPlayer * bulletVelocity, ForceMode2D.Impulse);
+
         if (!doNotPassUntoBullet) //In case the bullet is doing its own special stuff
         {//Sets bullet variables
             script.player = player;
@@ -439,6 +448,8 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             if (centerTarget && chasePlayer) {CenterTarget();}
             else{rigBod.linearVelocityX = 0;}
 
+            if (extremeAgro) {MoveTowardPlayer(agroMoveSpeed);}
+
             return 0; //Attack
         }
         else if (!IsOnGround()) //Don't move if in the air
@@ -463,7 +474,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private int AgroFly()
     {
-        if (IsInAttackRange())
+        if (IsInAttackRange() && !extremeAgro)
         {
             if (!hyperActiveAgroFlight) {rigBod.linearVelocity = new Vector3(0,0,0);}
             return 0; //Attack
@@ -473,12 +484,13 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             Vector3 nextPoint = player.transform.position;
             Vector3 direction = nextPoint - transform.position;
             direction = direction.normalized;
-            if (GetDistanceToPlayer() > attackRangeOuter) {rigBod.linearVelocity = direction*patrolMoveSpeed;}
-            else {rigBod.linearVelocity = -direction*patrolMoveSpeed;}
+            if (GetDistanceToPlayer() > attackRangeOuter) {rigBod.linearVelocity = direction*agroRange;}
+            else {rigBod.linearVelocity = -direction*agroRange;}
 
             if (lockXPos) {rigBod.linearVelocityX = 0;}
             if (lockYPos) {rigBod.linearVelocityY = 0;}
 
+            if (IsInAttackRange()) {return 0;}//Only possible when extremeAgro is on
               
             return -10;
         }
@@ -580,9 +592,6 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
              leftPatrolPoint = new Vector3(transform.position.x - patrolRangeLeft, transform.position.y + patrolRangeLeftY, 0);
              rightPatrolPoint = new Vector3(transform.position.x + patrolRangeRight, transform.position.y + patrolRangeRightY, 0);
         }
-        Debug.Log("Patrol points set:");
-        Debug.Log("Left:"); Debug.Log(leftPatrolPoint);
-        Debug.Log("Right:"); Debug.Log(rightPatrolPoint);
     }
 
     private void InitializePartol()
@@ -798,10 +807,10 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         }
         else
         {
-            Debug.Log("No player found");
         }
     }
     
+    /*
     public void TakeDamage(float DMG)
     {
         if (timeToVincibility > 0)
@@ -827,6 +836,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    */
 
 
 }

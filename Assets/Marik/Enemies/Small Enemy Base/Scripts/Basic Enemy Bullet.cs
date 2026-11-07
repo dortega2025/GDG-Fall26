@@ -76,7 +76,6 @@ public class BasicEnemyBullet : MonoBehaviour
             Vector3 direction = new Vector3(player.transform.position.x, player.transform.position.y, 0f) - transform.position;
             direction.z = 0f;
             direction = direction.normalized;
-            Debug.Log(direction);
             player.GetComponent<Rigidbody2D>().AddForce(direction * explosionForce, ForceMode2D.Impulse);
         }
     }
@@ -106,7 +105,7 @@ public class BasicEnemyBullet : MonoBehaviour
                         if (collision.gameObject == parent) {return;}
                         if (friendlyFire)
                         { 
-                            collision.gameObject.GetComponent<Small_Enemy_Basic_AI>().TakeDamage(damage); // TakeDamage(damage);
+                            collision.gameObject.GetComponent<enemyTakeDamage>().TakeDamage(damage); // TakeDamage(damage);
                             Destroy(gameObject);
                         }
                         else if (collidesWithFriendly)
