@@ -22,8 +22,8 @@ public class OnTouchSpawn : MonoBehaviour
             for (int i = 0; i < objToSpawns.Length; i++)
             {
                 Instantiate(objToSpawns[i], relitiveSpawnLocation + transform.position, transform.rotation);
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
     }
 }

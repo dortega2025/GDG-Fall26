@@ -138,6 +138,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
 
     [Header("Sounds")]
+    [SerializeField] private GameObject shootSound;
 
 
     [Header("Visuals")]
@@ -366,6 +367,9 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private void CreateProjectile()
     {
+        Debug.Log(shootSound);
+        if (shootSound != null) {Instantiate(shootSound);}
+
         float spread = bulletSpread/2;
         spread = UnityEngine.Random.Range(-spread, spread);
 

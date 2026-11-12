@@ -458,6 +458,7 @@ MonoBehaviour:
   patrolRangeLeftY: 0
   patrolRangeRightY: 5
   points: 0
+  shootSound: {fileID: 9073328336282601984, guid: 19bb709c0b4dcc429932f7e49992f308, type: 3}
   flipSpriteHorizontally: 1
   flipSpriteVertically: 0
   keepVisualMarkers: 0
@@ -550,8 +551,14 @@ MonoBehaviour:
   defence: 10
   invinciblityTime: 0
   lockDamage: 0
+  dontDestoryOn0Hp: 0
+  activateFunction: 0
+  functionName: 
   instantiateOnDestroy: 0
   prefab: {fileID: 0}
+  deathToon: {fileID: 8823948705115525773, guid: 5a87dcd3522beacb9a402b53947b7ca8, type: 3}
+  OnHitSound: {fileID: 5403540633125719698, guid: 87099d2b8058eaa3ea48c7450c059dd3, type: 3}
+  OnInvincibilityHitSound: {fileID: 5403540633125719698, guid: 87099d2b8058eaa3ea48c7450c059dd3, type: 3}
 --- !u!1 &6297157411503532331
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class DisapearingFloor_Distance : MonoBehaviour
     [SerializeField] private float horizontalDistance;
     [SerializeField] private float verticalDistance;
 
+    [SerializeField] private GameObject soundOnVanish;
+
     private GameObject[] players;
 
     private GameObject player;
@@ -50,6 +52,14 @@ public class DisapearingFloor_Distance : MonoBehaviour
         if (xGood && yGood)
         {
             Destroy(gameObject);
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (soundOnVanish != null)
+        {
+            Instantiate(soundOnVanish);
         }
     }
 

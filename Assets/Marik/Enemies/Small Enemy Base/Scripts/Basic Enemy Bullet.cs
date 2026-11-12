@@ -43,6 +43,11 @@ public class BasicEnemyBullet : MonoBehaviour
 
         healthLogic = GameObject.Find("HealthLogic");
         health = healthLogic.GetComponent<Health>();
+
+        if (player == null)
+        {
+            FindPlayer();
+        }
     }
 
     // Update is called once per frame
@@ -105,7 +110,7 @@ public class BasicEnemyBullet : MonoBehaviour
                         if (collision.gameObject == parent) {return;}
                         if (friendlyFire)
                         { 
-                            collision.gameObject.GetComponent<enemyTakeDamage>().TakeDamage(damage); // TakeDamage(damage);
+                            //collision.gameObject.GetComponent<enemyTakeDamage>().TakeDamage(damage); // TakeDamage(damage);
                             Destroy(gameObject);
                         }
                         else if (collidesWithFriendly)
@@ -156,5 +161,32 @@ public class BasicEnemyBullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle+90);
     }
 
-
+    private void FindPlayer()
+    {
+        GameObject[] players;
+        players = GameObject.FindGameObjectsWithTag("Player");
+        int len = players.Length;
+        if (len > 1)
+        {
+            float closestDistance = -100;
+            for(int i = 0; i < len; i++)
+            {
+                GameObject obj = players[i];
+                float dist = Vector3.Distance(obj.transform.position, transform.position);
+                if (dist < closestDistance || closestDistance == -100)
+                {
+                    closestDistance = dist;
+                    player = obj;
+                }
+            }
+        }
+        else if (len == 1)
+        {
+            player = players[0];
+        }
+        else
+        {
+            Debug.Log("No player found");
+        }
+    }
 }

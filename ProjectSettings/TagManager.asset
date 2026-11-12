@@ -9,6 +9,7 @@ TagManager:
   - EBullet
   - Laser
   - Platform
+  - Boss Door Placeholder
   layers:
   - Default
   - TransparentFX
