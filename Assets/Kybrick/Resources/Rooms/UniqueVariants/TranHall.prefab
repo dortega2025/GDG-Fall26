@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5607980768554670395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 0, z: 0}
+  m_LocalPosition: {x: 175, y: -16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,17 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdd2f02ab181134387f842a0e2b01f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCode
-  SpawnNextRoomPoint: {fileID: 8862524606328430962}
-  RoomStart: {fileID: 5607980768554670395}
-  Hall: {fileID: 5607980768554670395}
-  Placeholder: {fileID: 1830183520238049612, guid: 73221b94fc77fc34a8e2e873aaaf2471, type: 3}
-  Possibilities:
-  - {fileID: 7344163206921442528, guid: 610082166683066409c1d795c88a1f61, type: 3}
-  - {fileID: 1612767191592093501, guid: 1dd09f4612c9ee94dac63c2858469482, type: 3}
-  - {fileID: 3856190982144587003, guid: 3eff86e406e46c145ad3eeaace1af5c7, type: 3}
-  CheckZone: {fileID: 0}
-  Terminate: 0
-  StartHall: 0
+  StartRoom: {fileID: 0}
+  EndRoom: {fileID: 0}
+  Zone: 
+  PlayerCheck: {fileID: 0}
+  BossRoom: 0
   TranHall: 1
 --- !u!1 &8862524606328430962
 GameObject:

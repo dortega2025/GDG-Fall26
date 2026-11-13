@@ -7,13 +7,19 @@ public class GreenFlameBlades : MonoBehaviour
     [SerializeField] private float ActivateTime;
     [SerializeField] private float Speed;
     [SerializeReference] private Rigidbody2D RB;
-    private GameObject Player;
+    [SerializeReference] private Health health;
+    [SerializeReference] private GameObject HealthLogic;
+    [SerializeReference] private GameObject Player;
+    [SerializeReference] private PlayerInput PlayerI;
+
     private float timer;
     private Vector3 DIR;
     private bool Activatable = true;
     void Start()
     {
         Player = GameObject.Find("Player ");
+        HealthLogic = GameObject.Find("HealthLogic");
+        health = HealthLogic.GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -46,4 +52,13 @@ public class GreenFlameBlades : MonoBehaviour
             RB.AddForce(DIR.normalized * Speed * Time.deltaTime, ForceMode2D.Impulse);
         }
     }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject == Player)
+        {
+            Debug.Log("Heya You got hit by blades");
+            health.TakeDamage(5);
+        }
+    }
+
 }

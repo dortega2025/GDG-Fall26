@@ -5,11 +5,21 @@ using UnityEngine.Splines.ExtrusionShapes;
 
 public class CorpselessKnightBehavior : MonoBehaviour
 {
+    //The Corpseless knight is split in two, the head and chest. 
+    //Both use the same projectiles/ attacks in different ways and act seperately
+    //Head:Weaker and less dangerous attacks, designed to be a hazard while fighting the body.
+    //Chest:Durable, has long cooldown times in exchange has hard to dodge attacks that can become deadly in tandum with the head. 
+
+
     [Header("Head")]
     [Header("Mvmnt")]
+    [SerializeReference] private GameObject Door;//The door destroyed upon death
+
+    [SerializeReference] private Rigidbody2D RB;
     [SerializeField] bool HeadBusy;//if it is taking an action
     [SerializeField] int HeadJob;//what action its taking 0=move 1=Atk1 etc
     [SerializeField] bool HeadWaiting;//if it is not moving
+
     [SerializeField] float HeadWaitingTime;//how long it waits
     [SerializeField] float HeadWaitingMax;//how long it waits
     [SerializeField] float HeadDef;//How much damage it reduces from being hit
@@ -51,7 +61,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
     [SerializeField] private float ChestDef;//How much damage it reduces from being hit
     [SerializeField] private float ChestSpd;//how fast it moves
     [SerializeField] private float ChestDistTol;
-    [SerializeReference] private GameObject Chest;
+    [SerializeReference] private GameObject Chest;// chest object
     [SerializeReference] private GameObject CurrentChestPnt;// where they are at
     [SerializeReference] private GameObject NextChestPnt;// where they will go next
     [SerializeReference] private GameObject LastChestPnt;// where they were last
@@ -77,31 +87,37 @@ public class CorpselessKnightBehavior : MonoBehaviour
     [SerializeField] private int ChestProbD;
     [SerializeField] private float ChestAtkCoolDwnD;
 
+    [SerializeField] float ChestHP;
+    [SerializeField] float HeadHP;
 
+
+    private bool HeadAlive = true;
+    private bool ChestAlive = true;
+    private PlayerInput PlayerI;
     private float count;
     private int RNG;
     public void Start()
     {
-        ChestWaitingTime = ChestWaitingMax;
+        ChestWaitingTime = ChestWaitingMax;// cooldown at spawn
         HeadWaitingTime = HeadWaitingMax;
-        HeadAtkTimer = 25;
-        ChestChestAtkTimer = 25;
-        Player = GameObject.Find("Player ");
-
+        HeadAtkTimer = 5;
+        ChestChestAtkTimer = 10;
+        Player = GameObject.Find("Player ");//finds KYBRICK's player specifically
+        PlayerI = Player.GetComponent<PlayerInput>();//gets the input system from the player
     }
     public void Update()
     {
         Timers();
-        if (!HeadWaiting&&!HeadBusy)
+        if (!HeadWaiting&&!HeadBusy)//if the head is not doing anything at all and is ready to move
         {
             HeadBusy = true;
             HeadJob = 0;
-            HeadMvmntChoice();
+            HeadMvmntChoice();//choose which node to move to
         }
         if (!HeadWaiting && HeadBusy && HeadJob == 0)
         {
             Head.transform.position = Vector2.MoveTowards(Head.transform.position, NextPnt.transform.position, HeadSpd *Time.deltaTime);
-            if (DistCheck(Head, NextPnt, HeadDistTol))
+            if (DistCheck(Head, NextPnt, HeadDistTol))//when they get there they wait 
             {
                 HeadWaiting = true;
                 HeadBusy = false;
@@ -110,9 +126,9 @@ public class CorpselessKnightBehavior : MonoBehaviour
             }
         }
 
-        if (HeadBusy && HeadJob == 1)
+        if (HeadBusy && HeadJob == 1)//if choosing to use the chains attack (Spiny boys)
         {
-            if(DistCheck(Head, NextPnt, 0.1F))
+            if(DistCheck(Head, NextPnt, 0.1F))//Choose five nodes to create a chain at before going to cooldown
             {
                 HeadMvmntChoice();
                 GameObject ATK = Instantiate(AtkObA);
@@ -132,9 +148,9 @@ public class CorpselessKnightBehavior : MonoBehaviour
             }
         }
 
-        if (HeadBusy && HeadJob == 2)
+        if (HeadBusy && HeadJob == 2)//Blast attack, choose nodes in the attack function to move between 
         {
-            if (HeadDir == 0)
+            if (HeadDir == 0)//going to the start node
             {
                 Head.transform.position = Vector2.MoveTowards(Head.transform.position, LastPnt.transform.position, (HeadSpd + HeadSpd / 2) * Time.deltaTime);
                 if (DistCheck(Head, LastPnt, 1))
@@ -148,7 +164,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 }
             }
 
-            if (HeadDir == 1)
+            if (HeadDir == 1)//move back 
             {
                 Head.transform.position = Vector2.MoveTowards(Head.transform.position, NextPnt.transform.position, (HeadSpd - HeadSpd / 4) * Time.deltaTime);
                 if (DistCheck(Head, NextPnt, 1))
@@ -158,7 +174,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 HeadExtraTimer += Time.deltaTime;
             }
 
-            if (HeadDir == 2)
+            if (HeadDir == 2)//and forth
             {
                 Head.transform.position = Vector2.MoveTowards(Head.transform.position, LastPnt.transform.position, (HeadSpd - HeadSpd / 4) * Time.deltaTime);
                 if (DistCheck(Head, LastPnt, 1))
@@ -168,7 +184,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 HeadExtraTimer += Time.deltaTime;
             }
 
-            if (HeadExtraTimer > 10)
+            if (HeadExtraTimer > 10)//when timer is up go to cooldown/ reset rotation
             {
                 HeadDir = 0;
                 HeadBusy = false;
@@ -179,9 +195,9 @@ public class CorpselessKnightBehavior : MonoBehaviour
 
         }
 
-        if (HeadBusy && HeadJob == 3)
+        if (HeadBusy && HeadJob == 3)//Blades attack, spin around player and fire ffour blades that lock on 
         {
-            if (DistCheck(Head, Player, 6))
+            if (DistCheck(Head, Player, 6))//I couldnt figure out it rotating to look at player as it orbits player
             {
 
                 float angle = Time.time * ((HeadSpd/5)*-1);
@@ -207,23 +223,23 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 }
               
             }
-            else
+            else//if not close enough, get close enough 
             {
                 Head.transform.position = Vector2.MoveTowards(Head.transform.position, Player.transform.position, (HeadSpd) * Time.deltaTime);
             }
         }
 
-        if (HeadBusy && HeadJob == 4)
+        if (HeadBusy && HeadJob == 4)//The shared node attack, the node fires and after a timer sticks in place for a whle like a mine
         {
-            GameObject Desti = GameObject.Find("HeadPos1");
+            GameObject Desti = GameObject.Find("HeadPos1");//go to the center
             if (DistCheck(Head, Desti, 0.01F))
             {
                 HeadExtraTimer -= Time.deltaTime;
-                Head.transform.Rotate(Vector3.forward* HeadSpd*HeadSpd*2 * Time.deltaTime);
+                Head.transform.Rotate(Vector3.forward* HeadSpd*HeadSpd*2 * Time.deltaTime);//AND SPIIIIIIIIIIIIINNNNNN
                 if(HeadExtraTimer < 0)
                 {
                     ShootNode(AtkGenD,Head,HeadExtraTimer,AtkGen00);
-                    RNG = Random.Range(0, 4);
+                    RNG = Random.Range(0, 4);//add a little random so the attack isnt the same every time.
                     HeadExtraTimer = 0.75F + RNG / 2;
                     count += 1;
                     if (count >= 6)
@@ -241,7 +257,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 Head.transform.position = Vector2.MoveTowards(Head.transform.position, Desti.transform.position, (HeadSpd + HeadSpd / 2) * Time.deltaTime);
             }
         }
-        if(!ChestWaiting&&!ChestBusy)
+        if(!ChestWaiting&&!ChestBusy)//chest movement is same as head
         {
             ChestBusy = true;
             ChestJob = 0;
@@ -259,9 +275,9 @@ public class CorpselessKnightBehavior : MonoBehaviour
             }
         }
 
-        if (ChestBusy && ChestJob == 1)
+        if (ChestBusy && ChestJob == 1)// chain attack also known as "THE DNA GUN!"
         {
-            if (DistCheck(Chest, NextChestPnt, 0.1F)) 
+            if (DistCheck(Chest, NextChestPnt, 0.1F)) //goes to a bottom corner and fires off 40 chains that chase player as they spin
             {
                 GameObject ATK = Instantiate(ChestAtkObA);
                 ATK.transform.localScale = new Vector3(0.5F,1,1);
@@ -281,7 +297,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
             }
         }
 
-        if (ChestBusy && ChestJob == 2)
+        if (ChestBusy && ChestJob == 2)//Blast attack, Creates blasts in attack function, chases player for ten seconds.
         {
             Rigidbody2D RB = Chest.GetComponent<Rigidbody2D>();
             ChestExtraTimer += Time.deltaTime;
@@ -303,12 +319,13 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 angle = Mathf.Repeat(angle, 360);
                 angle = angle - transform.rotation.z;
                 Chest.transform.rotation = Quaternion.Euler(0, 0, angle);
+
                 RB.AddForce(DIR.normalized * Time.deltaTime * (ChestSpd + ChestSpd / 2), ForceMode2D.Impulse);
             }
 
         }
 
-        if (ChestBusy && ChestJob == 3)
+        if (ChestBusy && ChestJob == 3)//Goes in an hourglass formation creating blades along the way 
         {
 
             ChestExtraTimer -= Time.deltaTime;
@@ -316,7 +333,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
             GameObject N2 = GameObject.Find("ChestPos7");
             GameObject N3 = GameObject.Find("ChestPos8");
             GameObject N4 = GameObject.Find("ChestPos2");
-            if (ChestDir == 0)
+            if (ChestDir == 0)//go to start, bottom left
             {
                 Chest.transform.position = Vector2.MoveTowards(Chest.transform.position, N1.transform.position,(ChestSpd+ChestSpd/2)*Time.deltaTime);
                 if (DistCheck(Chest, N1, 0.1F))
@@ -324,7 +341,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                     ChestDir += 1;
 
                 }
-            }else if(ChestDir == 1)
+            }else if(ChestDir == 1)//top right
             {
                 if (ChestExtraTimer <= 0)
                 {
@@ -338,7 +355,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                     ChestDir += 1;
                 }
             }
-            else if (ChestDir == 2)
+            else if (ChestDir == 2)//bottom right
             {
                 if (ChestExtraTimer <= 0)
                 {
@@ -352,7 +369,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                     ChestDir += 1;
                 }
             }
-            else if (ChestDir == 3)
+            else if (ChestDir == 3)//top left
             {
                 if (ChestExtraTimer <= 0)
                 {
@@ -366,7 +383,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
                     ChestDir += 1;
                 }
             }
-            else if(ChestDir == 4)
+            else if(ChestDir == 4)//bottom right
             {
                 if (ChestExtraTimer <= 0)
                 {
@@ -388,13 +405,13 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 ChestDir = 0;
             }
         }
-        if (ChestBusy && ChestJob == 4)
+        if (ChestBusy && ChestJob == 4)//Shared node attack
         {
             GameObject Desti = GameObject.Find("ChestPos1");
             if (DistCheck(Chest, Desti, 0.01F))
             {
                 ChestExtraTimer -= Time.deltaTime;
-                Chest.transform.Rotate(Vector3.forward * ChestSpd * ChestSpd*ChestSpd  * Time.deltaTime);
+                Chest.transform.Rotate(Vector3.forward * ChestSpd * ChestSpd*ChestSpd  * Time.deltaTime);//spins faster and shoots more
                 if (ChestExtraTimer < 0)
                 {
                     ShootNode(ChestAtkGenD, Chest, ChestExtraTimer, ChestAtkGen00);
@@ -417,7 +434,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
             }
         }
     }
-    public bool DistCheck(GameObject One, GameObject Two, float Dist)
+    public bool DistCheck(GameObject One, GameObject Two, float Dist)//how far are you?
     {
         bool Activate;
         if (Vector2.Distance(One.transform.position, Two.transform.position) <= Dist)
@@ -430,7 +447,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
         }
         return Activate;
     }
-    public void Timers()
+    public void Timers()//put the main timers seperate so I could keep the update function as clean as possible
     {
         if (HeadWaiting && !HeadBusy)
         {
@@ -471,7 +488,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
             }
         }
     }
-    public void ChestMvmntChoice()
+    public void ChestMvmntChoice()//decides where to go 
     {
         GameObject Node;
         RNG = Random.Range(1, 9);
@@ -479,7 +496,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
         LastChestPnt = CurrentChestPnt;
         NextChestPnt = Node;
     }
-    public void HeadMvmntChoice()
+    public void HeadMvmntChoice()//did you think this would be different?
     {
         GameObject Node;
         RNG = Random.Range(1, 9);
@@ -487,7 +504,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
         LastPnt = CurrentPnt;
         NextPnt = Node;
     }
-    public void ChestAttackRoll()
+    public void ChestAttackRoll()//Chest chooses attack
     {
         RNG = Random.Range(1, 100);
         if (RNG >= ChestProbA && RNG < ChestProbB)
@@ -510,9 +527,8 @@ public class CorpselessKnightBehavior : MonoBehaviour
             ChestJob = 4;
             ChestChestAtkD();
         }
-
     }
-    public void HeadAttackRoll()
+    public void HeadAttackRoll()//guess
     {
         RNG = Random.Range(1, 100);
         if (RNG >= ProbabilityA && RNG < ProbabilityB)
@@ -535,7 +551,6 @@ public class CorpselessKnightBehavior : MonoBehaviour
             HeadJob = 4;
             HeadAtkD();
         }
-
     }
     public void HeadAtkA()//Chains
     {
@@ -569,8 +584,6 @@ public class CorpselessKnightBehavior : MonoBehaviour
                 NextPnt = GameObject.Find("HeadPos2");
                 break;
         }
-        
-      
         HeadAtkTimer = AtkCoolDwnB;
         HeadBusy = true;
     }
@@ -591,7 +604,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
     
     public void ChestChestAtkA()//Chains
     {
-        HeadBusy = true;
+       
         ChestJob = 1;
         RNG = Random.Range(1, 4);
         if(RNG == 1||RNG==2)
@@ -608,19 +621,22 @@ public class CorpselessKnightBehavior : MonoBehaviour
     public void ChestChestAtkB()//Blast
     {
         ChestJob = 2;
-        GameObject ChestAtk1 = Instantiate(ChestAtkObB,Chest.transform);
-        GameObject ChestAtk2 = Instantiate(ChestAtkObB,Chest.transform);
-        GameObject ChestAtk3 = Instantiate(ChestAtkObB, Chest.transform);
+        GameObject ChestAtk1 = Instantiate(ChestAtkObB);
+        GameObject ChestAtk2 = Instantiate(ChestAtkObB);
+        GameObject ChestAtk3 = Instantiate(ChestAtkObB);
 
+        ChestAtk1.transform.position = Chest.transform.position;
         ChestAtk1.transform.parent = Chest.transform;
         ChestAtk1.transform.localScale = new Vector3(0.675F, 1, 1);
         ChestAtk1.transform.localPosition = new Vector2(0, -2.35F);
 
+        ChestAtk2.transform.position = Chest.transform.position;
         ChestAtk2.transform.parent = Chest.transform;
         ChestAtk2.transform.localScale = new Vector3(0.3264167F, 0.458002F, 1);
         ChestAtk2.transform.localRotation = Quaternion.Euler(0, 0, 270);
         ChestAtk2.transform.localPosition = new Vector2(-1.41F, 0.547F);
 
+        ChestAtk3.transform.position = Chest.transform.position;
         ChestAtk3.transform.parent = Chest.transform;
         ChestAtk3.transform.localScale = new Vector3(0.2935825F, 0.458002F, 1);
         ChestAtk3.transform.localRotation = Quaternion.Euler(180, 0, 90);
@@ -643,8 +659,7 @@ public class CorpselessKnightBehavior : MonoBehaviour
         ChestExtraTimer = 0.75F + RNG / 2;
         ChestChestAtkTimer = ChestAtkCoolDwnD;
     }
-
-    public void ShootNode(GameObject Gen,GameObject Body,float Timer,GameObject Gen00)
+    public void ShootNode(GameObject Gen,GameObject Body,float Timer,GameObject Gen00)//since they share the same, I gave it a function 
     {
         GameObject ATK;
         Vector3 direction = Gen00.transform.position - Gen.transform.position;
@@ -656,5 +671,33 @@ public class CorpselessKnightBehavior : MonoBehaviour
         ATK = Instantiate(AtkObD, Body.transform.position, Quaternion.Euler(0, 0, angle));
         RNG = Random.Range(-2, 2);
         ATK.GetComponent<Rigidbody2D>().AddForce((direction * (RNG+HeadSpd)) * -1, ForceMode2D.Impulse);
+    }
+  public void TakeDamage(bool Who)//Each child object/body part has a code with bool Chest if chest yes if chest no they tell this who got hurt
+    {
+
+        if (Who == true)//ChestWasHit
+        {
+            ChestHP -= (PlayerI.Atk/ChestDef);
+            if (ChestHP <= 0)
+            {
+                Destroy(Chest);
+                ChestAlive = false;
+            }
+        }
+        else if (Who == false)//HeadWasHit
+        {
+            HeadHP -= (PlayerI.Atk / HeadDef);
+            if (HeadHP <= 0)
+            {
+                Destroy(Head);
+                HeadAlive = false;
+            }
+        }
+        if (!ChestAlive && !HeadAlive)//die
+        {
+            Destroy(Door);
+            Destroy(gameObject);
+        }
+
     }
 }

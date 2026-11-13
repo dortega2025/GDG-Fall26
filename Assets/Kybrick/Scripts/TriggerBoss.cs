@@ -8,7 +8,7 @@ public class TriggerBoss : MonoBehaviour
     [SerializeReference] GameObject Doorcreator1;
     [SerializeReference] GameObject Doorcreator2;
 
-    bool activated;
+    public bool activated;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

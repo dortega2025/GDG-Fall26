@@ -7,6 +7,11 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+    [SerializeField] private float InvulTime;
+    [SerializeField] private float InvulTimeMax;
+    [SerializeField] private float Def;
+
+
     public HealthBar healthBar;
 
     void Awake()
@@ -17,9 +22,14 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        if (InvulTime <= 0)
+        {
+            InvulTime = InvulTimeMax;
 
-        healthBar.SetHealth(currentHealth);
+            currentHealth -= damage/Def;
+
+            healthBar.SetHealth(currentHealth);
+        }
     }
 
     public float GetHealth()
@@ -30,6 +40,17 @@ public class Health : MonoBehaviour
     public void InitiateDeath()
     {
         //TODO: Eventually this should trigger a death sequence
+    }
+    public void Update()
+    {
+        if (InvulTime - Time.deltaTime >= 0)
+        {
+            InvulTime -= Time.deltaTime;
+        }
+        else
+        {
+            InvulTime = 0;
+        }
     }
 
 }
