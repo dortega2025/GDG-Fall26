@@ -1,0 +1,457 @@
+fileFormatVersion: 2
+guid: efe37d0cc463ddf62b0c51c75c03a3b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2895260197384831554
+    second: Grand Diamond Blue_0
+  - first:
+      213: -453091230483287514
+    second: Grand Diamond Blue_1
+  - first:
+      213: -7836235832938628979
+    second: Grand Diamond Blue_2
+  - first:
+      213: 2257322250926130554
+    second: Grand Diamond Blue_3
+  - first:
+      213: 1723930826409413146
+    second: Grand Diamond Blue_4
+  - first:
+      213: -1418155554040413350
+    second: Grand Diamond Blue_5
+  - first:
+      213: 5994999252251364227
+    second: Grand Diamond Blue_6
+  - first:
+      213: -8283196981800051248
+    second: Grand Diamond Blue_7
+  - first:
+      213: 8178807112449143705
+    second: Grand Diamond Blue_8
+  - first:
+      213: -8291656203187452073
+    second: Grand Diamond Blue_9
+  - first:
+      213: 102320904652577634
+    second: Grand Diamond Blue_10
+  - first:
+      213: -7257915175813763454
+    second: Grand Diamond Blue_11
+  - first:
+      213: 8634838427312874275
+    second: Grand Diamond Blue_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Grand Diamond Blue_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebdbc82b038f1d7d0800000000000000
+      internalID: -2895260197384831554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_1
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 331
+        width: 34
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 622f23c2deb46b9f0800000000000000
+      internalID: -453091230483287514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_2
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 331
+        width: 34
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8871813709104390800000000000000
+      internalID: -7836235832938628979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_3
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 312
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75890e90ae935f10800000000000000
+      internalID: 2257322250926130554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_4
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 271
+        width: 97
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1a8a7de3f1ace710800000000000000
+      internalID: 1723930826409413146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_5
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 218
+        width: 274
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a538c2d8903b15ce0800000000000000
+      internalID: -1418155554040413350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_6
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 271
+        width: 97
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38bcc2b9e04823350800000000000000
+      internalID: 5994999252251364227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_7
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 185
+        width: 98
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dd58373b3c2c0d80800000000000000
+      internalID: -8283196981800051248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 134
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99338ff4cb5f08170800000000000000
+      internalID: 8178807112449143705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_9
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 86
+        width: 34
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75709514d9e1eec80800000000000000
+      internalID: -8291656203187452073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_10
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 86
+        width: 34
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26bd9e612548b6100800000000000000
+      internalID: 102320904652577634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_11
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 130
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28e24b70a94b64b90800000000000000
+      internalID: -7257915175813763454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grand Diamond Blue_12
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 179
+        width: 97
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32360e0eccb15d770800000000000000
+      internalID: 8634838427312874275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7ef24624bb8b05c2e9db68bf3320d714
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Grand Diamond Blue_0: -2895260197384831554
+      Grand Diamond Blue_1: -453091230483287514
+      Grand Diamond Blue_10: 102320904652577634
+      Grand Diamond Blue_11: -7257915175813763454
+      Grand Diamond Blue_12: 8634838427312874275
+      Grand Diamond Blue_2: -7836235832938628979
+      Grand Diamond Blue_3: 2257322250926130554
+      Grand Diamond Blue_4: 1723930826409413146
+      Grand Diamond Blue_5: -1418155554040413350
+      Grand Diamond Blue_6: 5994999252251364227
+      Grand Diamond Blue_7: -8283196981800051248
+      Grand Diamond Blue_8: 8178807112449143705
+      Grand Diamond Blue_9: -8291656203187452073
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

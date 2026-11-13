@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "GDG-Fall26.slnx"
+    "dotnet.defaultSolution": "GDG-Fall26.slnx",
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }

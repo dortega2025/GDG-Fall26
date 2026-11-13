@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using TMPro;
 using Unity.Tutorials.Editor;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.Sqlite;
@@ -25,7 +26,6 @@ public class Boss : MonoBehaviour
     private int phaseNum;
     private bool phaseChangeLeft;
     private bool phaseChangeRight;
-    private bool phaseChange3;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject laserPrefabL;
     [SerializeField] private GameObject laserPrefabR;
@@ -35,6 +35,8 @@ public class Boss : MonoBehaviour
     private int pathIdxL = 0;
     [SerializeField] private GameObject[] laserPathR;
     private int pathIdxR = 0;
+    private float health = 500f;
+    TMP_Text healthBar;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -42,18 +44,29 @@ public class Boss : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("Player");
         timeSinceShot = 0f;
-        currMove = 1;
-        phaseNum = 2;
+        phaseNum = 1;
         phaseChangeLeft = false;
         phaseChangeRight = false;
         timeSinceLaser = 0f;
+        healthBar = GameObject.Find("BossBar").GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (health < 334 && phaseNum == 1)
+        {
+            phaseNum = 2;
+        }
+        if (health < 168 && phaseNum == 2)
+        {
+            phaseNum = 3;
+            shotTimer = 1f;
+            shotAmount = 6;
+        }
+        healthBar.GetComponent<TMP_Text>().text = "Health: " + health;
         timeSinceShot += Time.deltaTime;
         if (timeSinceShot > shotTimer)
         {
@@ -76,7 +89,6 @@ public class Boss : MonoBehaviour
                 laserTimer = Random.Range(20f, 30f);
                 timeSinceLaser = 0;
             }
-            
         }
     }
 
@@ -161,5 +173,10 @@ public class Boss : MonoBehaviour
             laser.transform.eulerAngles = new Vector3(0f, 0f, 270f);
             phaseChangeRight = true;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        health -= collision.gameObject.GetComponent<Bullet>().damage;
     }
 }

@@ -29,6 +29,9 @@ public class BasicEnemyBullet : MonoBehaviour
     public bool collidesWithFriendlyBullets;
     public bool collidesWithPlayerBullets;
 
+    private GameObject healthLogic;
+    private Health health;
+
     private Vector2 ogVelocity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +40,14 @@ public class BasicEnemyBullet : MonoBehaviour
         ogVelocity = rigBod.linearVelocity;
 
         rigBod.gravityScale = gravitationalEffect;
+
+        healthLogic = GameObject.Find("HealthLogic");
+        health = healthLogic.GetComponent<Health>();
+
+        if (player == null)
+        {
+            FindPlayer();
+        }
     }
 
     // Update is called once per frame
@@ -70,7 +81,6 @@ public class BasicEnemyBullet : MonoBehaviour
             Vector3 direction = new Vector3(player.transform.position.x, player.transform.position.y, 0f) - transform.position;
             direction.z = 0f;
             direction = direction.normalized;
-            Debug.Log(direction);
             player.GetComponent<Rigidbody2D>().AddForce(direction * explosionForce, ForceMode2D.Impulse);
         }
     }
@@ -78,11 +88,10 @@ public class BasicEnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         switch (collision.gameObject.tag)
         {
             case "Player":
-                //collision.gameObject.GetComponent<Player>().TakeDamage(damage); //TODO Needs how player takes damage
+                health.TakeDamage(damage);
                 Destroy(gameObject);
             break;
 
@@ -101,7 +110,7 @@ public class BasicEnemyBullet : MonoBehaviour
                         if (collision.gameObject == parent) {return;}
                         if (friendlyFire)
                         { 
-                            collision.gameObject.GetComponent<Small_Enemy_Basic_AI>().TakeDamage(damage); // TakeDamage(damage);
+                            //collision.gameObject.GetComponent<enemyTakeDamage>().TakeDamage(damage); // TakeDamage(damage);
                             Destroy(gameObject);
                         }
                         else if (collidesWithFriendly)
@@ -152,5 +161,32 @@ public class BasicEnemyBullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle+90);
     }
 
-
+    private void FindPlayer()
+    {
+        GameObject[] players;
+        players = GameObject.FindGameObjectsWithTag("Player");
+        int len = players.Length;
+        if (len > 1)
+        {
+            float closestDistance = -100;
+            for(int i = 0; i < len; i++)
+            {
+                GameObject obj = players[i];
+                float dist = Vector3.Distance(obj.transform.position, transform.position);
+                if (dist < closestDistance || closestDistance == -100)
+                {
+                    closestDistance = dist;
+                    player = obj;
+                }
+            }
+        }
+        else if (len == 1)
+        {
+            player = players[0];
+        }
+        else
+        {
+            Debug.Log("No player found");
+        }
+    }
 }

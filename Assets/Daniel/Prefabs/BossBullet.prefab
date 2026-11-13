@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3657132802705030880}
   - component: {fileID: 2510414234157999145}
   - component: {fileID: -1647323925437331874}
-  - component: {fileID: -3341494008849268058}
   - component: {fileID: 3069016091508173506}
-  m_Layer: 8
+  - component: {fileID: 2646197467803428443}
+  m_Layer: 7
   m_Name: BossBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,18 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-3341494008849268058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795191697204909094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd56347d2e91e48619fddc0345b6856d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bullet
 --- !u!70 &3069016091508173506
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,3 +159,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.99999994, y: 1.9999999}
   m_Direction: 0
+--- !u!114 &2646197467803428443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795191697204909094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29db4e1bb8ddf4612992d1df6d726971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossBullet
+  time: 0
+  rb: {fileID: 0}
+  collider: {fileID: 0}
+  health: {fileID: 0}
