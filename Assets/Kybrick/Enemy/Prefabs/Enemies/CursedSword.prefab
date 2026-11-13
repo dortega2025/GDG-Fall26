@@ -107,13 +107,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3f5b9f7765013498d98d53758ebdde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursedSword
+  health: {fileID: 0}
+  PlayerI: {fileID: 0}
+  HealthLogic: {fileID: 0}
   Particles: {fileID: 8697834235960033311, guid: 10ee748e92142344ab3d365a101a703f, type: 3}
   RotSpd: 10
   FlySpd: 21
   AggroRange: 25
   AtkRange: 5
   AtkTimer: 2
-  HP: 5
+  HP: 25
+  Def: 2
   RB: {fileID: 8937748801858465031}
 --- !u!50 &8937748801858465031
 Rigidbody2D:

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnterTrigger : MonoBehaviour
 {
+
     [SerializeReference] private GameObject ActivateThis;
      public GameObject CheckFor;
     public bool entered;

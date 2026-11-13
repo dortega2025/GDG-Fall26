@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float AtkSpeed;
     [SerializeField] private float AtkTimer;
     [SerializeField] private float BulletSpeed;
-    [SerializeField] private float Atk;
+    [SerializeField] public float Atk;
     [SerializeReference] private GameObject bulletprefab;
     [SerializeReference] private GameObject Generator;
 
@@ -41,7 +41,9 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Health and Damage and Stuff")]
     [SerializeField] private Health health; //temp to handle damage
-    
+    [SerializeField] private GameObject HealthLogic; //temp to handle damage
+
+
 
 
     private Rigidbody2D rb;
@@ -55,6 +57,8 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
+        HealthLogic = GameObject.Find("HealthLogic");
+        health = HealthLogic.GetComponent<Health>();
         SquishScaleX = Squish.transform.localScale.x;
         SquishScaleY = Squish.transform.localScale.y;
         rb = GetComponent<Rigidbody2D>();
@@ -112,6 +116,7 @@ public class PlayerInput : MonoBehaviour
         if (context.performed) Debug.Log("Dash Button Pressed"); 
         if (context.performed && canDash)
         {
+            health.TakeDamage(0);
             StartCoroutine(PerformDash());
             Debug.Log("PerformDashTriggered");
         }
@@ -153,8 +158,8 @@ public class PlayerInput : MonoBehaviour
                 }
                 else
                 {
-                 SquishScaleY = 1;
-                 Squish.transform.localScale = new Vector3(1, SquishScaleY, 0);
+                    SquishScaleY = 1;
+                    Squish.transform.localScale = new Vector3(1, SquishScaleY, 0);
                 }
 
         }
@@ -164,7 +169,14 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        if (AtkTimer - 1*Time.deltaTime >= 0)
+        {
+            AtkTimer -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            AtkTimer = 0;
+        }
         // Stop normal movement physics if the player is currently dashing
         if (isDashing) return;
 

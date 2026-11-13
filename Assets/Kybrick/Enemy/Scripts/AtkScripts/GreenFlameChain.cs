@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GreenFlameChain : MonoBehaviour
 {
+    [SerializeReference] private Health health;
     [SerializeField] private float Life;
     [SerializeField] private float Speed;
     [SerializeField] private float RotSpeed;
@@ -9,13 +10,16 @@ public class GreenFlameChain : MonoBehaviour
     [SerializeField] private float ChaseMult;
 
     [SerializeReference] private Rigidbody2D RB;
-    private GameObject Player;
+    [SerializeReference] private GameObject HealthLogic;
+    [SerializeReference] private GameObject Player;
     private float timer;
     private Vector3 DIR;
     private bool Activatable = true;
     void Start()
     {
         Player = GameObject.Find("Player ");
+        HealthLogic = GameObject.Find("HealthLogic");
+        health = HealthLogic.GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -38,5 +42,13 @@ public class GreenFlameChain : MonoBehaviour
             transform.Rotate(Vector3.forward, RotSpeed);
         }
         
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == Player)
+        {
+            Debug.Log("Heya You got hit by chain");
+            health.TakeDamage(5);
+        }
     }
 }

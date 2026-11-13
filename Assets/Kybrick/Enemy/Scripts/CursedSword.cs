@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class CursedSword : MonoBehaviour
 {
+
+    [SerializeReference] private Health health;
+    [SerializeReference] private PlayerInput PlayerI;
+    [SerializeReference] private GameObject HealthLogic;
     [SerializeReference] private GameObject Particles;
     [SerializeField] private float RotSpd;
     [SerializeField] private float FlySpd;
@@ -9,6 +13,7 @@ public class CursedSword : MonoBehaviour
     [SerializeField] private float AtkRange;
     [SerializeField] private float AtkTimer;
     [SerializeField] private float HP;
+    [SerializeField] private float Def;
     [SerializeReference] private Rigidbody2D RB;
     private GameObject Player;
     private float timer;
@@ -21,6 +26,9 @@ public class CursedSword : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player ");
+        PlayerI = Player.GetComponent<PlayerInput> ();
+        HealthLogic = GameObject.Find("HealthLogic");
+        health = HealthLogic.GetComponent<Health>();
     }
 
     public void Update()
@@ -28,7 +36,7 @@ public class CursedSword : MonoBehaviour
         if (Attacking)
         {
             timer -= Time.deltaTime;
-            if (timer <= 1F&& timer >0.98F)
+            if (timer <= 1F&& timer >0.98F)//right before we attack we make a particle to tell the player to beware.
             {
                 GameObject Wow = Instantiate(Particles);
                 Wow.transform.position = transform.position;
@@ -83,6 +91,22 @@ public class CursedSword : MonoBehaviour
 
 
         }
-    }       
-           
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == Player&&Attacking)
+        {
+            Debug.Log("Heya You got hit");
+            health.TakeDamage(10);
+        }
+        if (collision.gameObject.CompareTag("PBullet"))
+        {
+            HP -= (PlayerI.Atk / Def);
+            if (HP <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
 }
