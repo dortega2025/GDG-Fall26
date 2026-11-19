@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2017270667
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
@@ -134,6 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd56347d2e91e48619fddc0345b6856d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  time: 0
+  rb: {fileID: 0}
+  collider: {fileID: 0}
+  health: {fileID: 0}
+  damage: 5
 --- !u!70 &6088346158973730040
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
