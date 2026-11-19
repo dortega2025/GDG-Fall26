@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdd2f02ab181134387f842a0e2b01f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCode
-  StartRoom: {fileID: 0}
-  EndRoom: {fileID: 0}
+  StartRoom: {fileID: 7090713554042017021}
+  EndRoom: {fileID: 1700634191864717967}
   Zone: FT Compound
   PlayerCheck: {fileID: 0}
   BossRoom: 0

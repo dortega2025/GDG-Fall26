@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc53f938cf5dad2ccad3a23d2f81f5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroySelfAfterTime
-  timeTillDestory: 1500
+  timeTillDestory: 1000
 --- !u!114 &2063462417478911362
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 9033793077060708600}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 278.5, y: -1989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdd2f02ab181134387f842a0e2b01f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomCode
-  StartRoom: {fileID: 0}
+  StartRoom: {fileID: 9033793077060708600}
   EndRoom: {fileID: 2974556164968323955}
   Zone: FT Compound
   PlayerCheck: {fileID: 3330353753435417438}
