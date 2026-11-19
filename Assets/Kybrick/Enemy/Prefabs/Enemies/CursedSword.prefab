@@ -116,7 +116,7 @@ MonoBehaviour:
   AggroRange: 25
   AtkRange: 5
   AtkTimer: 2
-  HP: 25
+  HP: 20
   Def: 2
   RB: {fileID: 8937748801858465031}
 --- !u!50 &8937748801858465031
