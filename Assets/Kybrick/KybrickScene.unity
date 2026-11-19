@@ -777,13 +777,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2414728760643159137, guid: d2255a88711398d4592f249a919a9263, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414728760643159137, guid: d2255a88711398d4592f249a919a9263, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_ActionId
+      value: 9ef8f49c-59e0-41a3-a42d-5bae7409a3a3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414728760643159137, guid: d2255a88711398d4592f249a919a9263, type: 3}
+      propertyPath: m_ActionEvents.Array.data[20].m_ActionName
+      value: 'Player/TempTakeDamage[/Keyboard/z]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414728760643159137, guid: d2255a88711398d4592f249a919a9263, type: 3}
       propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2414728760643159137, guid: d2255a88711398d4592f249a919a9263, type: 3}
       propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2414728760643159137, guid: d2255a88711398d4592f249a919a9263, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 308030346}
     - target: {fileID: 2414728760643159137, guid: d2255a88711398d4592f249a919a9263, type: 3}
       propertyPath: m_ActionEvents.Array.data[20].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -811,7 +827,7 @@ PrefabInstance:
     - target: {fileID: 4331245335169140423, guid: d2255a88711398d4592f249a919a9263, type: 3}
       propertyPath: health
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2079485746}
     - target: {fileID: 4331245335169140423, guid: d2255a88711398d4592f249a919a9263, type: 3}
       propertyPath: AtkSpeed
       value: 0.5
@@ -821,9 +837,13 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4331245335169140423, guid: d2255a88711398d4592f249a919a9263, type: 3}
+      propertyPath: HealthLogic
+      value: 
+      objectReference: {fileID: 2079485744}
+    - target: {fileID: 4331245335169140423, guid: d2255a88711398d4592f249a919a9263, type: 3}
       propertyPath: bulletprefab
       value: 
-      objectReference: {fileID: 1401300886351974221, guid: 5e98acca865ee9741977f5df47efbc12, type: 3}
+      objectReference: {fileID: 3707639250271682433, guid: bf580edb6a0e70f478cc37328da87c04, type: 3}
     - target: {fileID: 6722503149547858961, guid: d2255a88711398d4592f249a919a9263, type: 3}
       propertyPath: m_Name
       value: 'Player '
@@ -931,6 +951,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2079485744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1196546665381854081, guid: 58b59742b30694932ba153afc785fcd4, type: 3}
+  m_PrefabInstance: {fileID: 740647243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2079485746 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7561560602845900450, guid: 58b59742b30694932ba153afc785fcd4, type: 3}
+  m_PrefabInstance: {fileID: 740647243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079485744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532f09dd9b4d848e682e882efee39352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
