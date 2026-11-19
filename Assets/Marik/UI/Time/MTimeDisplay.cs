@@ -28,13 +28,6 @@ public class MTimeDisplay : MonoBehaviour
     [SerializeField] GameObject MinutesOnes; 
     [SerializeField] GameObject MinutesTwos; 
 
-    [Header("Other")]
-    [SerializeField] GameObject ColonSMS; //Colon at seconds to millseconds
-    [SerializeField] GameObject ColonMS; 
-
-    [Header("Positioning")]
-    [SerializeField] GameObject padding; 
-
     private UnityEngine.UI.Image thousanthsImage;
     private UnityEngine.UI.Image hundredthsImage;
     private UnityEngine.UI.Image tenthsImage;
