@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5355598391154102263}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 328.5878, y: -1871.8041, z: 0}
+  m_LocalPosition: {x: 328.5878, y: -1871.8041, z: -20}
   m_LocalScale: {x: 1, y: 200, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,8 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserSummon
   sprRenderer: {fileID: 3107771068299185522}
   damageingLaser: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  hitBox: {fileID: 0}
+  hitBox: {fileID: 4377911406094982178}
   controlScript: {fileID: 0}
+  controlScript2: {fileID: 0}
   timeToWarning: 30
   timeToTrigger: 55
   timeToKeepFiring: 20

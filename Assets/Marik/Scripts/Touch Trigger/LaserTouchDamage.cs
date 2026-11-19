@@ -5,6 +5,9 @@ public class LaserTouchDamage : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] float damage;
+    [SerializeField] bool doContinuesDamage;
+    [SerializeField] float DamageCooldown;
+    [SerializeField] float currDamageCooldown = 0;
 
     private GameObject healthLogic;
     private Health health;
@@ -17,14 +20,32 @@ public class LaserTouchDamage : MonoBehaviour
         health = healthLogic.GetComponent<Health>();
     }
 
-    private void OnTriggerEnter2D(Collider2D Collider2D)
+    void FixedUpdate()
+    {
+        if (currDamageCooldown >= 0)
+        {
+            currDamageCooldown--;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D Collider2D)
     {
         if (Collider2D.gameObject.CompareTag("Player"))
         {
-            health.TakeDamage(damage);
-            Destroy(GetComponent<BoxCollider2D>());
+            if (currDamageCooldown <= 0)
+            {
+                currDamageCooldown = DamageCooldown;
+                health.TakeDamage(damage);
+                if (!doContinuesDamage)
+                {
+                    Destroy(GetComponent<BoxCollider2D>());
+                }
+            }
+
         }
     }
+
+    
 
     private void FindPlayer()
     {

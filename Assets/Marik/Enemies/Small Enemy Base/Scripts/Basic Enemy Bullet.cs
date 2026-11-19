@@ -37,6 +37,11 @@ public class BasicEnemyBullet : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (player == null)
+        {
+            FindPlayer();
+        }
+
         ogVelocity = rigBod.linearVelocity;
 
         rigBod.gravityScale = gravitationalEffect;
@@ -44,10 +49,7 @@ public class BasicEnemyBullet : MonoBehaviour
         healthLogic = GameObject.Find("HealthLogic");
         health = healthLogic.GetComponent<Health>();
 
-        if (player == null)
-        {
-            FindPlayer();
-        }
+
     }
 
     // Update is called once per frame

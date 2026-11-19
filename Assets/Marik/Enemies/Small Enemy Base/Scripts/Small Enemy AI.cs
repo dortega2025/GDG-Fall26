@@ -1,17 +1,6 @@
 using System;
-using System.Drawing;
-using NUnit.Framework;
-using Unity.Collections;
 using Unity.Mathematics;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Dependencies.NCalc;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.U2D.IK;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting.FullSerializer;
 
 public class Small_Enemy_Basic_AI : MonoBehaviour
 {
@@ -145,6 +134,9 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
     [SerializeField] private bool flipSpriteHorizontally;
     [SerializeField] private bool flipSpriteVertically; //Assumes player is below enemy at default
 
+    [Header("Drops")]
+
+
     [Header("Debug")]
     [SerializeField] private bool keepVisualMarkers;
 
@@ -251,6 +243,7 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     void OnDestroy()
     {
+
         //Final blast //TODO this is basically in enemy bullet script, make sure to update changes there
         float distanceFromPlayer = GetDistanceToPlayer();
         if (finalBlast && distanceFromPlayer <= finalBlastRadius)
@@ -272,14 +265,25 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        string tag = collision.gameObject.tag;
-
-        if (tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            GameObject healthLogic = GameObject.Find("HealthLogic");
-            Health health = healthLogic.GetComponent<Health>();
-            health.TakeDamage(touchDamage);
+            DealPhysDamageToPlayer();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DealPhysDamageToPlayer();
+        }
+    }
+
+    private void DealPhysDamageToPlayer()
+    {
+        GameObject healthLogic = GameObject.Find("HealthLogic");
+        Health health = healthLogic.GetComponent<Health>();
+        health.TakeDamage(touchDamage);
     }
 
     private void CheckForVisualRanges()
@@ -478,9 +482,10 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
 
     private int AgroFly()
     {
-        if (IsInAttackRange() && !extremeAgro)
+        if (IsInAttackRange())
         {
             if (!hyperActiveAgroFlight) {rigBod.linearVelocity = new Vector3(0,0,0);}
+            if (extremeAgro) {rigBod.linearVelocity = (player.transform.position - transform.position).normalized * agroMoveSpeed;}
             return 0; //Attack
         }
         else
@@ -488,8 +493,8 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
             Vector3 nextPoint = player.transform.position;
             Vector3 direction = nextPoint - transform.position;
             direction = direction.normalized;
-            if (GetDistanceToPlayer() > attackRangeOuter) {rigBod.linearVelocity = direction*agroRange;}
-            else {rigBod.linearVelocity = -direction*agroRange;}
+            if (GetDistanceToPlayer() > attackRangeOuter) {rigBod.linearVelocity = direction*agroMoveSpeed;}
+            else {rigBod.linearVelocity = -direction*agroMoveSpeed;}
 
             if (lockXPos) {rigBod.linearVelocityX = 0;}
             if (lockYPos) {rigBod.linearVelocityY = 0;}
@@ -787,6 +792,8 @@ public class Small_Enemy_Basic_AI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
+
+
     private void FindPlayer()
     {
         players = GameObject.FindGameObjectsWithTag("Player");

@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 1714630926222832280}
   - component: {fileID: 8446705243922152935}
   - component: {fileID: 5545111597930122566}
+  - component: {fileID: 8618891810894061177}
   m_Layer: 7
   m_Name: Blue Orb Tank
   m_TagString: Untagged
@@ -559,6 +560,25 @@ MonoBehaviour:
   deathToon: {fileID: 8823948705115525773, guid: 5a87dcd3522beacb9a402b53947b7ca8, type: 3}
   OnHitSound: {fileID: 5403540633125719698, guid: 87099d2b8058eaa3ea48c7450c059dd3, type: 3}
   OnInvincibilityHitSound: {fileID: 5403540633125719698, guid: 87099d2b8058eaa3ea48c7450c059dd3, type: 3}
+--- !u!114 &8618891810894061177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290765999980170142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe1039c4516f47d7824e668065c7e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthDropSpawner
+  healthDrop: {fileID: 5200537650991176820, guid: 315dd6e19b0ff9d16809197f115aa258, type: 3}
+  healthGainByPercent: 0
+  minHealthDrop: 5
+  maxHealthDrop: 25
+  chanceToDropHealth: 5
+  instantDestroy: 0
+  onlyDropOneItem: 0
 --- !u!1 &6297157411503532331
 GameObject:
   m_ObjectHideFlags: 0

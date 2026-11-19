@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1888808271968840472}
   - component: {fileID: 5974681689462845084}
   - component: {fileID: -916666546576469730}
+  - component: {fileID: 5439446564974156804}
   m_Layer: 0
   m_Name: Lancer Boss Lasser (QF)
   m_TagString: Laser
@@ -155,8 +156,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserSummon
   sprRenderer: {fileID: 1888808271968840472}
   damageingLaser: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  hitBox: {fileID: 0}
+  hitBox: {fileID: 2339671518118024539}
   controlScript: {fileID: 0}
+  controlScript2: {fileID: 0}
   timeToWarning: 35
   timeToTrigger: 66
   timeToKeepFiring: 20
@@ -259,3 +261,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &5439446564974156804
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4320137898290909564}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f3b43228749b3c2abc0004ceba3d441, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

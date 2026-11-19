@@ -6,16 +6,22 @@ public class LaserSummon : MonoBehaviour
     [SerializeField] private SpriteRenderer sprRenderer; 
     [SerializeField] private Sprite damageingLaser; 
     [SerializeField] private Collider2D hitBox; 
+    [SerializeField] private Animator aniControl; 
 
+    [Header("Possible Controlers")]
     [SerializeField] public LaserRemoteControl controlScript; 
+    [SerializeField] public OnTriggerLasers controlScript2; 
+    [Header("Self Timing Control")]
     [SerializeField] private float timeToWarning; 
-    [SerializeField] public float timeToTrigger; 
-    [SerializeField] private float timeToKeepFiring; 
-
+    [SerializeField] public float timeToTrigger = -5; 
+    [SerializeField] public float timeToKeepFiring; 
+    [Header("Other")]
+    [SerializeField] public bool doContinuesDamage; 
+    [SerializeField] public bool startOff; 
     [SerializeField] private AudioSource sound; 
-
     [SerializeField] private float damage; 
     private bool firing = false;
+    private Sprite ogSprite;
 
     private GameObject healthLogic;
     private Health health;
@@ -29,6 +35,12 @@ public class LaserSummon : MonoBehaviour
 
         healthLogic = GameObject.Find("HealthLogic");
         health = healthLogic.GetComponent<Health>();
+
+        if (startOff)
+        {
+            ogSprite = sprRenderer.sprite;
+            sprRenderer.sprite = null;
+        }
     }
 
     void FixedUpdate()
@@ -62,23 +74,45 @@ public class LaserSummon : MonoBehaviour
         else
         {
             //if (controlScript == null) {return;}
-            if (controlScript.timeToWarning < 5 && controlScript.timeToWarning > -5)
+            if (controlScript != null)
             {
-                sprRenderer.color = Color.red;
+                if (controlScript.timeToWarning < 5 && controlScript.timeToWarning > -5)
+                {
+                    sprRenderer.color = Color.red;
+                }
+
+                if (controlScript.timeToTrigger < 5 && controlScript.timeToTrigger > -5)
+                {
+                    sprRenderer.color = Color.cyan;
+                    sprRenderer.sprite = damageingLaser;
+                    firing = true;
+                }
+            }
+            else if (controlScript2 != null)
+            {
+                if (controlScript2.timeToWarning < 5 && controlScript2.timeToWarning > -5)
+                {
+                    sprRenderer.color = Color.red;
+                }
+
+                if (controlScript2.timeToTrigger < 5 && controlScript2.timeToTrigger > -5)
+                {
+                    sprRenderer.color = Color.cyan;
+                    sprRenderer.sprite = damageingLaser;
+                    firing = true;
+                }
             }
 
-            if (controlScript.timeToTrigger < 5 && controlScript.timeToTrigger > -5)
-            {
-                sprRenderer.color = Color.cyan;
-                sprRenderer.sprite = damageingLaser;
-                firing = true;
-            }
         }
 
         if (firing)
         {
             if (fireFirstTrigger)
             {
+                if (aniControl != null)
+                {
+                    aniControl.enabled = true;
+                }
                 fireFirstTrigger = false;
                 sound.Play();
             }
@@ -96,11 +130,10 @@ public class LaserSummon : MonoBehaviour
     {
         if (firing)
         {
-
             if (colider.gameObject.tag == "Player")
             {
                 health.TakeDamage(damage);
-                Destroy(hitBox);
+                if (!doContinuesDamage) {Destroy(hitBox);}
             }
         }
     }
@@ -134,6 +167,9 @@ public class LaserSummon : MonoBehaviour
         }
     }
 
-
+    public void TurnOn()
+    {
+        sprRenderer.sprite = ogSprite;
+    }
 }
 

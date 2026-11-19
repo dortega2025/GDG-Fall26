@@ -472,8 +472,9 @@ GameObject:
   - component: {fileID: 8874775299566574264}
   - component: {fileID: 1470614502734040866}
   - component: {fileID: 6688806233798483218}
-  - component: {fileID: 516800640744068982}
+  - component: {fileID: 8760365540229927862}
   - component: {fileID: 1505566825114915855}
+  - component: {fileID: 516800640744068982}
   m_Layer: 7
   m_Name: Sample Small Enemy
   m_TagString: Untagged
@@ -575,8 +576,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyTakeDamage
   myHealth: 1
   defence: 1
+  invinciblityTime: 0
+  lockDamage: 0
+  dontDestoryOn0Hp: 0
+  activateFunction: 0
+  functionName: 
   instantiateOnDestroy: 0
   prefab: {fileID: 0}
+  deathToon: {fileID: 0}
+  OnHitSound: {fileID: 0}
+  OnInvincibilityHitSound: {fileID: 0}
 --- !u!114 &6688806233798483218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,9 +619,6 @@ MonoBehaviour:
   hyperActiveAgroFlight: 0
   lockXPos: 0
   lockYPos: 0
-  health: 5
-  defence: 1
-  invincibilityTime: 0
   touchDamage: 0
   bulletDamage: 1
   projectilesPerFire: 1
@@ -661,36 +667,29 @@ MonoBehaviour:
   patrolRangeLeftY: 0
   patrolRangeRightY: 0
   points: 0
+  shootSound: {fileID: 0}
   flipSpriteHorizontally: 1
   flipSpriteVertically: 0
   keepVisualMarkers: 0
---- !u!50 &516800640744068982
-Rigidbody2D:
-  serializedVersion: 5
+--- !u!114 &8760365540229927862
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8970041180610080069}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: b36207a912d3a684db4b2a32dec73d9a, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe1039c4516f47d7824e668065c7e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthDropSpawner
+  healthDrop: {fileID: 8823948705115525773, guid: 5a87dcd3522beacb9a402b53947b7ca8, type: 3}
+  healthGainByPercent: 0
+  minHealthDrop: 5
+  maxHealthDrop: 25
+  chanceToDropHealth: 5
+  instantDestroy: 0
+  onlyDropOneItem: 0
 --- !u!61 &1505566825114915855
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -737,3 +736,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &516800640744068982
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970041180610080069}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: b36207a912d3a684db4b2a32dec73d9a, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

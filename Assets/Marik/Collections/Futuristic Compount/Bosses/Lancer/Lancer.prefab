@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 6865820591320381294}
   - component: {fileID: 8981685922093711855}
   - component: {fileID: 5443457354346416199}
+  - component: {fileID: 3159597473165203340}
   m_Layer: 7
   m_Name: Lancer
   m_TagString: Untagged
@@ -518,3 +519,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3159597473165203340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476521657436913168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe1039c4516f47d7824e668065c7e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthDropSpawner
+  healthDrop: {fileID: 5200537650991176820, guid: 315dd6e19b0ff9d16809197f115aa258, type: 3}
+  healthGainByPercent: 0
+  minHealthDrop: 45
+  maxHealthDrop: 50
+  chanceToDropHealth: 100
+  instantDestroy: 0
+  onlyDropOneItem: 0

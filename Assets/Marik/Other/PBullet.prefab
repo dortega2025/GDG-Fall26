@@ -147,6 +147,8 @@ MonoBehaviour:
   rb: {fileID: 5892335351463946209}
   collider: {fileID: 8250381585093821186}
   damage: 10
+  defenceShred: 1
+  defenceIgnore: 0
 --- !u!50 &5892335351463946209
 Rigidbody2D:
   serializedVersion: 5
@@ -169,7 +171,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

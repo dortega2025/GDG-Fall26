@@ -5,7 +5,8 @@ public class LaserRemoteControl : MonoBehaviour
 {
     [SerializeField] public float timeToWarning; 
     [SerializeField] public float timeToTrigger; 
-    [SerializeField] public GameObject laserToSpawn; 
+    [SerializeField] public GameObject laserToSpawn;
+    [SerializeField] public bool DontAutoDestroy; 
 
     private GameObject player;
 
@@ -27,10 +28,10 @@ public class LaserRemoteControl : MonoBehaviour
 
         if (timeToWarning < 0) {timeToWarning = -5;}
         if (timeToTrigger < 0) {timeToTrigger = -5;}
-        if (timeToDestroy < 0) {Destroy(gameObject);}
+        if (timeToDestroy < 0 && !DontAutoDestroy) {Destroy(gameObject);}
     }
 
-    public void CreateLaser(Vector3 spawnLoc, GameObject laser = null, bool lockVert = false, bool lockHor = false, bool lockOnPlayer = true, bool controlsLaser = true, bool forceNearVert = false)
+    public void CreateLaser(Vector3 spawnLoc, GameObject laser = null, bool lockVert = false, bool lockHor = false, bool lockOnPlayer = false, bool controlsLaser = true, bool forceNearVert = false)
     {
         if (laser == null) {laser = laserToSpawn;}
 
