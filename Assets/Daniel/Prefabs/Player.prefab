@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7121631774788719726}
   - component: {fileID: 1744139350959234552}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220409328919705552}
   - component: {fileID: 8993852892185052630}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 2815589886997909689}
   - component: {fileID: 835613470061351479}
   - component: {fileID: 2651343542459485791}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,8 +219,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -690784403
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -246,15 +246,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13496bdad1a234da6bf375fb708e1797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  rb: {fileID: 2815589886997909689}
-  checkRadius: 0.2
-  groundMask:
+  AtkSpeed: 0
+  AtkTimer: 0
+  BulletSpeed: 10
+  Atk: 0
+  bulletprefab: {fileID: 8502028204453024795, guid: 4a8f1583239f54a7db97c06c2892bb57, type: 3}
+  Generator: {fileID: 6148554969593545901}
+  speed: 8
+  jumpForce: 12
+  jumpCount: 0
+  jumpMAX: 2
+  dashPower: 24
+  dashTime: 0.2
+  dashCooldown: 1
+  Squish: {fileID: 6652990290373946953}
+  SquishAmount: 0
+  SquishMax: 0
+  groundCheck: {fileID: 0}
+  groundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  HP: 0
-  bulletPrefab: {fileID: 1833276178359229209, guid: 4a8f1583239f54a7db97c06c2892bb57, type: 3}
-  edge: {fileID: 6148554969593545901}
-  arm: {fileID: 9140436722351958164}
+    m_Bits: 64
+  health: {fileID: 0}
 --- !u!50 &2815589886997909689
 Rigidbody2D:
   serializedVersion: 5
@@ -311,7 +323,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5304293933444433709}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnMove
+        m_MethodName: Move
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -355,7 +367,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5304293933444433709}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnJump
+        m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -423,6 +435,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 21d40978-97c6-4dfe-b78e-1fa28397e492
     m_ActionName: 'Player/Dash[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ef8f49c-59e0-41a3-a42d-5bae7409a3a3
+    m_ActionName: 'Player/TempTakeDamage[/Keyboard/z]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -484,7 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7808582639523640231}
   - component: {fileID: 5201043571092553163}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,8 +568,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -690784403
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
