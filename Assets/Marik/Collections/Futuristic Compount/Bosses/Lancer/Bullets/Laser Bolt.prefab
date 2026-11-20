@@ -111,7 +111,7 @@ MonoBehaviour:
   player: {fileID: 0}
   parent: {fileID: 0}
   homeingType: 0
-  lifeSpan: 10000
+  lifeSpan: 1000
   velocity: 0
   gravitationalEffect: 0
   homingPower: 0

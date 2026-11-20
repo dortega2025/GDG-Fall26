@@ -576,7 +576,7 @@ MonoBehaviour:
   healthGainByPercent: 0
   minHealthDrop: 5
   maxHealthDrop: 25
-  chanceToDropHealth: 5
+  chanceToDropHealth: 50
   instantDestroy: 0
   onlyDropOneItem: 0
 --- !u!1 &6297157411503532331

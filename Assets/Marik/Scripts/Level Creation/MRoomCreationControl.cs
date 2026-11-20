@@ -67,7 +67,6 @@ public class MRoomCreationControl : MonoBehaviour
             while (usedRoomSpace < roomsPerZone)
             {
                 int chosenRoomIndex = UnityEngine.Random.Range(0, arrayLength);
-                Debug.Log(chosenRoomIndex);
                 GameObject chosenRoom = possibleRooms[chosenRoomIndex];
                 roomOrder.Add(chosenRoom);
                 roomType.Add("Standered");
@@ -105,11 +104,8 @@ public class MRoomCreationControl : MonoBehaviour
             {
                 transform.position = lastRoomEndpoint + new Vector3(0, 5, 0);
                 MTransHall hallCode = newRoom.transform.Find("TransHallControl").GetComponent<MTransHall>();
-                if (hallCode != null)
-                {hallCode.relatedGameObject = gameObject;}
-
+                if (hallCode != null) {hallCode.relatedGameObject = gameObject;}
             }
-
         }
     }
 

@@ -8,7 +8,9 @@ public class PlayerDropRestraintLogic : MonoBehaviour
     [SerializeField] private bool useLowestY;
     [SerializeField] private float lowestY;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private Vector3 activePositson;
 
+    private bool active = false;
     private Rigidbody2D rigBod;
 
     private GameObject[] players;
@@ -24,7 +26,11 @@ public class PlayerDropRestraintLogic : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if ((player.transform.position.y < (lowestY - transform.position.y) && useLowestY) || ((player.transform.position.y > (lowestY - transform.position.y)) && useHeighestY))
+        if (!active)
+        {
+            return;
+        }
+        if ((player.transform.position.y < (lowestY - activePositson.y) && useLowestY) || ((player.transform.position.y > (lowestY - activePositson.y)) && useHeighestY))
         {
             rigBod.linearDamping = 0;
             Debug.Log("Player max speed reset to none.");
@@ -36,7 +42,9 @@ public class PlayerDropRestraintLogic : MonoBehaviour
     {
         if (Collider2D.gameObject.tag == "Player")
         {
-            rigBod.linearDamping = .5f;
+            active = true;
+            activePositson= player.transform.position;
+            rigBod.linearDamping = maxSpeed;
             Debug.Log("Player max speed slowed.");
         }
     }

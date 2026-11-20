@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4648901709376042549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4073509731731089111}
+  - component: {fileID: 2680625621734835521}
+  - component: {fileID: 2286823709535549490}
+  - component: {fileID: 627519022496138147}
+  - component: {fileID: 1521685149674252589}
+  m_Layer: 0
+  m_Name: Laser Chase 1 P2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4073509731731089111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648901709376042549}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 187.36769, y: -73.07528, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2680625621734835521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648901709376042549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1430b36d0fc11556aad264765202fea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserBarrage
+  spawnType: 1
+  offsetFromPlayer: {x: -1, y: 0, z: 0}
+  spawnPositions: []
+  adjustToBeRelitiveToSelf: 1
+--- !u!114 &2286823709535549490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648901709376042549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426babdb94fb8899cb0e4aea5604aa37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserRemoteControl
+  timeToWarning: 0
+  timeToTrigger: 0
+  laserToSpawn: {fileID: 4959197372122436053, guid: 1413f8ddff226300d994e5445990d420, type: 3}
+  DontAutoDestroy: 1
+--- !u!114 &627519022496138147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648901709376042549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d4dfd20a9dd46faaf4f686b591870b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnRandomLasers
+  Cooldown: 10
+  positionGetter: {fileID: 2680625621734835521}
+  laserControl: {fileID: 2286823709535549490}
+  lockToVertical: 1
+  lockToHorizontal: 0
+  spawnNearVertical: 0
+--- !u!114 &1521685149674252589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648901709376042549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfb447c5e94532b0852bd6ab8d2c640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroySelfWhenFarFromPlayer
+  maxDist: 127
+  hold: 0
+  useDistToLiftHold: 0
+  minDist: 0
+  forceDestroy: 0
+  stopOnLoopDone: 0

@@ -20,7 +20,7 @@ public class SpawnRandomLasers : MonoBehaviour
         {
             currCooldown = Cooldown;
             Vector3 spawnPos = positionGetter.FindLoctionWithDefault();
-            laserControl.CreateLaser(spawnPos, null, lockToVertical, lockToHorizontal, true, false, spawnNearVertical);
+            laserControl.CreateLaser(spawnPos, null, lockToVertical, lockToHorizontal, false, false, spawnNearVertical);
         }
         else
         {

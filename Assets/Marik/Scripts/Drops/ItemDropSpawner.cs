@@ -34,9 +34,9 @@ public class ItemDropSpawner : MonoBehaviour
 
     private bool DropHealth()
     {
-        if (UnityEngine.Random.Range(-1, 99) < chanceToDropHealth)
+        if (UnityEngine.Random.Range(1, 100) <= chanceToDropHealth)
         {
-            GameObject drop = Instantiate(healthDrop);
+            GameObject drop = Instantiate(healthDrop, transform.position, transform.rotation);
             HealthItem scr = drop.GetComponent<HealthItem>();
             scr.usePercentage = healthGainByPercent;
             scr.heathValue = UnityEngine.Random.Range(minHealthDrop, maxHealthDrop);
